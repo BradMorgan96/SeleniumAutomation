@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default Suite" thread-count="4" parallel="tests">
+  <test name="Login_Page_No_Username_No_Password_1">
+    <classes>
+      <class name="AutomationTest.NewTest"/>
+    </classes>
+  </test>
+  <!-- CRM_Tests -->
+</suite> <!-- Default Suite -->
