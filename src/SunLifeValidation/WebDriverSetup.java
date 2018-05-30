@@ -1,6 +1,5 @@
-package AutomationTest;
-
-import org.openqa.selenium.WebDriver;
+package SunLifeValidation;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
