@@ -3,7 +3,7 @@
 <suite name="Default Suite" thread-count="4" parallel="tests">
   <test name="Login_Page_No_Username_No_Password_1">
     <classes>
-      <class name="AutomationTest.SunlifePremiumBelowMinimum"/>
+      <class name="AutomationTest.SunlifeBlankPremium"/>
     </classes>
   </test>
   <!-- CRM_Tests -->

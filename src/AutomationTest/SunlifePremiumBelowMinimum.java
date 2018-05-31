@@ -27,7 +27,6 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         File file = new File("C:\\Users\\bmorgan\\Documents\\Test Results\\" + className + " " + amendedDate + " " + amendedTime + ".txt");
 
         /* Creating file exception */
-
         try {
             file.createNewFile();
         }  catch (IOException ex) {
@@ -101,8 +100,6 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         Select drpNewCustomer = new Select(driver().findElement(By.xpath("//*[@id=\"sl_gof_customer_type\"]")));
         WebElement maxPremium = driver().findElement(By.xpath("//*[@id=\"quote_by_premium\"]"));
         WebElement generateGOF = driver().findElement(By.xpath("//*[@id=\"quoteclient\"]"));
-        Boolean isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
-
 
         /*----------DEV-1568 - SunLife Quotes with Premiums under the SunLife Minimum Premium on a single policy display the SunLife Minimum Premium----------*/
 
@@ -125,11 +122,14 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         // Finds the newly created quote
         Float QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
 
+        //Attempts to find the error that appears
+        Boolean isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
+
         // Validates error hasn't occurred
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -148,11 +148,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -171,11 +172,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -195,11 +197,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -218,11 +221,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -241,11 +245,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -266,11 +271,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -289,11 +295,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -312,11 +319,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -336,11 +344,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -359,11 +368,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
@@ -382,11 +392,12 @@ public class SunlifePremiumBelowMinimum extends ClassGlobals {
         }
 
         QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        if ((isError = false) && (QuotedPremium >= 3.90)) {
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
             System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
         }
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("FAIL: Premium error is displayed.");
         }  else if (QuotedPremium < 3.90) {
             System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);

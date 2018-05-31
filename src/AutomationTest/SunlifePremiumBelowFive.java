@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SunlifeBlankPremium extends ClassGlobals {
+public class SunlifePremiumBelowFive extends ClassGlobals {
 
     @Test
     public void main() throws FileNotFoundException {
@@ -29,7 +29,7 @@ public class SunlifeBlankPremium extends ClassGlobals {
         /* Creating file exception */
         try {
             file.createNewFile();
-        }  catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 
@@ -44,7 +44,7 @@ public class SunlifeBlankPremium extends ClassGlobals {
 
         /* Opens CRM */
         System.out.println("-------------------------------------------------TEST STARTED-------------------------------------------------");
-        driver().get("http://test.reassuredpensions.co.uk");
+        driver().get("http://staging.reassuredpensions.co.uk");
 
         try {
             Thread.sleep(5000);
@@ -93,13 +93,6 @@ public class SunlifeBlankPremium extends ClassGlobals {
             e.printStackTrace();
         }
 
-        /* Close Confirm Quote Details */
-        Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
-
-        if (confirmQuote == true){
-            driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
-        }
-
         /* Define SUNLIFE dropdowns and web elements */
         Select drpSmoker = new Select(driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")));
         Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
@@ -108,16 +101,15 @@ public class SunlifeBlankPremium extends ClassGlobals {
         WebElement maxPremium = driver().findElement(By.xpath("//*[@id=\"quote_by_premium\"]"));
         WebElement generateGOF = driver().findElement(By.xpath("//*[@id=\"quoteclient\"]"));
 
-
         /*----------DEV-1568 - SunLife Quotes with Premiums under the SunLife Minimum Premium on a single policy display the SunLife Minimum Premium----------*/
 
-        /* TEST CASE 1: SUNLIFE SINGULAR EXISTING NON SMOKER POLICY WITH BLANK PREMIUM */
-        System.out.println("----TEST CASE 1: SUNLIFE SINGULAR EXISTING NON SMOKER POLICY WITH BLANK PREMIUM----");
+        /* TEST CASE 1: SUNLIFE SINGULAR EXISTING NON SMOKER POLICY WITH PREMIUM AT 4 */
+        System.out.println("----TEST CASE 1: SUNLIFE SINGULAR EXISTING NON SMOKER POLICY WITH PREMIUM AT 4----");
         drpSmoker.selectByIndex(1);
         drpLives.selectByVisibleText("Clarence");
         drpQuote.selectByVisibleText("Premium");
         maxPremium.clear();
-        maxPremium.sendKeys("");
+        maxPremium.sendKeys("4");
         drpNewCustomer.selectByVisibleText("Existing");
         generateGOF.click();
 
@@ -126,25 +118,29 @@ public class SunlifeBlankPremium extends ClassGlobals {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Finds the newly created quote
+        Float QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
 
         //Attempts to find the error that appears
         Boolean isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        // Validates quote
+        // Validates error hasn't occurred
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
+            System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
+        }
         if (isError == true) {
-            System.out.println("PASS: Expected error is displayed." );
-        } else {
-            System.out.println("FAIL: Expected error is not displayed.");
+            System.out.println("FAIL: Premium error is displayed.");
+
+        } else if (QuotedPremium < 3.90) {
+            System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
         }
 
-        /* TEST CASE 2: SUNLIFE SINGULAR EXISTING SMOKER POLICY WITH BLANK PREMIUM */
-        System.out.println("----TEST CASE 2: SUNLIFE SINGULAR EXISTING SMOKER POLICY WITH BLANK PREMIUM----");
+        /* TEST CASE 2: SUNLIFE SINGULAR EXISTING SMOKER POLICY WITH PREMIUM AT 4 */
+        System.out.println("----TEST CASE 2: SUNLIFE SINGULAR EXISTING SMOKER POLICY WITH PREMIUM AT 4----");
         drpSmoker.selectByIndex(2);
-        drpLives.selectByVisibleText("Clarence");
-        drpQuote.selectByVisibleText("Premium");
         maxPremium.clear();
-        maxPremium.sendKeys("");
-        drpNewCustomer.selectByVisibleText("Existing");
+        maxPremium.sendKeys("4");
         generateGOF.click();
 
         try {
@@ -153,22 +149,23 @@ public class SunlifeBlankPremium extends ClassGlobals {
             e.printStackTrace();
         }
 
+        QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
         isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        // Validates quote
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
+            System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
+        }
         if (isError == true) {
-            System.out.println("PASS: Expected error is displayed." );
-        } else {
-            System.out.println("FAIL: Expected error is not displayed.");
+            System.out.println("FAIL: Premium error is displayed.");
+        } else if (QuotedPremium < 3.90) {
+            System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
         }
 
-        /* TEST CASE 7: SUNLIFE SINGULAR NEW NON SMOKER POLICY WITH BLANK PREMIUM */
-        System.out.println("----TEST CASE 3: SUNLIFE SINGULAR NEW NON SMOKER POLICY WITH BLANK PREMIUM----");
+        /* TEST CASE 3: SUNLIFE SINGULAR NEW NON SMOKER POLICY WITH PREMIUM AT 4 */
+        System.out.println("----TEST CASE 3: SUNLIFE SINGULAR NEW NON SMOKER POLICY WITH PREMIUM AT 4----");
         drpSmoker.selectByIndex(1);
-        drpLives.selectByVisibleText("Clarence");
-        drpQuote.selectByVisibleText("Premium");
         maxPremium.clear();
-        maxPremium.sendKeys("");
+        maxPremium.sendKeys("4");
         drpNewCustomer.selectByVisibleText("New");
         generateGOF.click();
 
@@ -178,24 +175,23 @@ public class SunlifeBlankPremium extends ClassGlobals {
             e.printStackTrace();
         }
 
+        QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
         isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        // Validates quote
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
+            System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
+        }
         if (isError == true) {
-            System.out.println("PASS: Expected error is displayed." );
-        } else {
-            System.out.println("FAIL: Expected error is not displayed.");
+            System.out.println("FAIL: Premium error is displayed.");
+        } else if (QuotedPremium < 3.90) {
+            System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
         }
 
-
-        /* TEST CASE 10: SUNLIFE SINGULAR NEW SMOKER POLICY WITH BLANK PREMIUM */
-        System.out.println("----TEST CASE 4: SUNLIFE SINGULAR NEW SMOKER POLICY WITH BLANK PREMIUM----");
+        /* TEST CASE 4: SUNLIFE SINGULAR NEW SMOKER POLICY WITH PREMIUM AT 4 */
+        System.out.println("----TEST CASE 4: SUNLIFE SINGULAR NEW SMOKER POLICY WITH PREMIUM AT 4----");
         drpSmoker.selectByIndex(2);
-        drpLives.selectByVisibleText("Clarence");
-        drpQuote.selectByVisibleText("Premium");
         maxPremium.clear();
-        maxPremium.sendKeys("");
-        drpNewCustomer.selectByVisibleText("New");
+        maxPremium.sendKeys("4");
         generateGOF.click();
 
         try {
@@ -204,13 +200,16 @@ public class SunlifeBlankPremium extends ClassGlobals {
             e.printStackTrace();
         }
 
+        QuotedPremium = Float.parseFloat(driver().findElement(By.xpath("//*[@id=\"quote-results-0-0\"]/div[1]")).getAttribute("innerHTML").replace("£", "").replace("pm", ""));
         isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        // Validates quote
+        if ((isError == false) && (QuotedPremium >= 3.90)) {
+            System.out.println("PASS: Premium above minimum amount. Quotation given: " + QuotedPremium);
+        }
         if (isError == true) {
-            System.out.println("PASS: Expected error is displayed." );
-        } else {
-            System.out.println("FAIL: Expected error is not displayed.");
+            System.out.println("FAIL: Premium error is displayed.");
+        } else if (QuotedPremium < 3.90) {
+            System.out.println("FAIL: Premium below minimum amount. Quotation given: " + QuotedPremium);
         }
 
         /* Logs out of the CRM*/

@@ -101,7 +101,6 @@ public class SunlifePremiumAsZero extends ClassGlobals {
         Select drpNewCustomer = new Select(driver().findElement(By.xpath("//*[@id=\"sl_gof_customer_type\"]")));
         WebElement maxPremium = driver().findElement(By.xpath("//*[@id=\"quote_by_premium\"]"));
         WebElement generateGOF = driver().findElement(By.xpath("//*[@id=\"quoteclient\"]"));
-        Boolean isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
 
         /*----------DEV-1568 - SunLife Quotes with Premiums under the SunLife Minimum Premium on a single policy display the SunLife Minimum Premium----------*/
@@ -122,8 +121,10 @@ public class SunlifePremiumAsZero extends ClassGlobals {
             e.printStackTrace();
         }
 
+        Boolean isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
+
         // Validates quote
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("PASS: Expected error is displayed " );
         } else {
             System.out.println("FAIL: Expected error is not displayed. ");
@@ -145,8 +146,10 @@ public class SunlifePremiumAsZero extends ClassGlobals {
             e.printStackTrace();
         }
 
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
+
         // Validates quote
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("PASS: Expected error is displayed " );
         } else {
             System.out.println("FAIL: Expected error is not displayed. ");
@@ -168,8 +171,10 @@ public class SunlifePremiumAsZero extends ClassGlobals {
             e.printStackTrace();
         }
 
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
+
         // Validates quote
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("PASS: Expected error is displayed " );
         } else {
             System.out.println("FAIL: Expected error is not displayed. ");
@@ -192,8 +197,10 @@ public class SunlifePremiumAsZero extends ClassGlobals {
             e.printStackTrace();
         }
 
+        isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
+
         // Validates quote
-        if (isError = true) {
+        if (isError == true) {
             System.out.println("PASS: Expected error is displayed " );
         } else {
             System.out.println("FAIL: Expected error is not displayed. ");
