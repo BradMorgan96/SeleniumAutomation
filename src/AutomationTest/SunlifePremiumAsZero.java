@@ -22,9 +22,9 @@ public class SunlifePremiumAsZero extends ClassGlobals {
         String amendedTime = new SimpleDateFormat("HHmm").format(new Date());
         long startTime = System.currentTimeMillis();
 
-        /* Setting PrintStream to add results to given textfile */
+        /* Setting PrintStream to add results to given text file in a new folder */
         String className = this.getClass().getSimpleName();
-        File file = new File("C:\\Users\\bmorgan\\Documents\\Test Results\\" + className + " " + amendedDate + " " + amendedTime + ".txt");
+        File file = new File( fileLocation + devNo + " " + className + " " + amendedDate + " " + amendedTime + ".txt");
 
         /* Creating file exception */
 

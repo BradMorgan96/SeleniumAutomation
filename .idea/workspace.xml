@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0eab9070-4159-4904-a58f-1742ac271dee" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AutomationTest/GlobalClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AutomationTest/JointPanelQuotesBelowMinimum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AutomationTest/SinglePanelQuotesBelowMinimum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomationTest/GlobalClass.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomationTest/testNG.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomationTest/testNG.xml" afterDir="false" />
     </list>
@@ -20,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SunlifeBlankPremium.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SunlifeBlankPremium.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            <state relative-caret-position="187">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,8 +38,8 @@
       <file leaf-file-name="SunlifePremiumBelowMinimum.java" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="68" column="90" lean-forward="true" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="90" />
+            <state relative-caret-position="442">
+              <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,8 +50,8 @@
       <file leaf-file-name="SunlifePremiumBelowFive.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2916">
-              <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
+            <state relative-caret-position="442">
+              <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,8 +62,8 @@
       <file leaf-file-name="SunlifePremiumAsZero.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="200" selection-start-line="200" selection-end-line="200" />
+            <state relative-caret-position="442">
+              <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,11 +71,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testNG.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AutomationTest/testNG.xml">
+      <file leaf-file-name="SinglePanelQuotesBelowMinimum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AutomationTest/SinglePanelQuotesBelowMinimum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+            <state relative-caret-position="391">
+              <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JointPanelQuotesBelowMinimum.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AutomationTest/JointPanelQuotesBelowMinimum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="318" column="30" lean-forward="true" selection-start-line="318" selection-start-column="30" selection-end-line="318" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,17 +98,17 @@
       <file leaf-file-name="ClassGlobals.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="68" lean-forward="true" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GlobalClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AutomationTest/GlobalClass.java">
+      <file leaf-file-name="testNG.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AutomationTest/testNG.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+            <state relative-caret-position="238">
+              <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -113,25 +131,29 @@
         <option value="$PROJECT_DIR$/src/AutomaticTest/Test.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/Test.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/WebDriverSetup.java" />
-        <option value="$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/SunLifeBlankPremium.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/NewTest.java" />
         <option value="$PROJECT_DIR$/src/SunLifeValidation/SunlifeBlankPremium.java" />
         <option value="$PROJECT_DIR$/src/AutomationTests/SunLifeValidation/SunlifePremiumBelowMinimum.java" />
         <option value="$PROJECT_DIR$/src/SunLifeValidation/SunlifePremiumBelowMinimum.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/txtTemplate.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/directoryCreation.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/dirLocation.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/GlobalClass.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java" />
-        <option value="$PROJECT_DIR$/src/AutomationTest/testNG.xml" />
         <option value="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java" />
         <option value="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java" />
-        <option value="$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/SinglePanelQuotesBelowMinimum.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/JointPanelQuotesBelowMinimum.java" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/testNG.xml" />
+        <option value="$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="215" />
-    <option name="y" value="-24" />
+    <option name="x" value="-28" />
+    <option name="y" value="-19" />
     <option name="width" value="1400" />
     <option name="height" value="977" />
   </component>
@@ -142,6 +164,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,14 +187,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -296,40 +318,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestNG_Config_Default - 2018.05.30 at 17h 26m 12s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 13h 54m 13s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.30 at 17h 34m 03s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 08m 19s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.30 at 17h 38m 35s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 12m 18s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 09h 01m 16s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 13m 38s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 09h 23m 15s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 17m 17s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 16h 28m 13s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 27m 10s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 16h 29m 50s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 14h 31m 57s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 16h 42m 31s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.04 at 17h 25m 54s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 17h 13m 47s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.05 at 10h 46m 45s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="TestNG_Config_Default - 2018.05.31 at 17h 15m 27s.xml">
+    <history-entry file="TestNG_Config_Default - 2018.06.05 at 10h 49m 43s.xml">
       <configuration name="TestNG Config Default" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -339,24 +360,24 @@
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5007225" side_tool="true" weight="0.15367232" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49927744" visible="true" weight="0.272051" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32943678" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18020834" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32943678" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -368,6 +389,67 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="68" column="90" lean-forward="true" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3281">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/testNG.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="68" lean-forward="true" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/GlobalClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SunLifeValidation/WebDriverSetup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -396,9 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -430,9 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -464,9 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -484,9 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -509,9 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="179" column="31" lean-forward="true" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -533,9 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -560,16 +624,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutomationTest/txtTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/txtTemplate.java" />
     <entry file="file://$PROJECT_DIR$/src/SunLifeValidation/ClassGlobals.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -594,34 +649,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java">
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/directoryCreation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        <state relative-caret-position="306">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java">
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/dirLocation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="68" lean-forward="true" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
+        <state relative-caret-position="34">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomationTest/GlobalClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowFive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2916">
-          <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
+        <state relative-caret-position="442">
+          <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -630,15 +685,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomationTest/testNG.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        <state relative-caret-position="238">
+          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumAsZero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifePremiumBelowMinimum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="68" column="90" lean-forward="true" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="90" />
+        <state relative-caret-position="442">
+          <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -647,8 +712,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomationTest/SunlifeBlankPremium.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="true" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/SinglePanelQuotesBelowMinimum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="119" selection-start-line="26" selection-start-column="119" selection-end-line="26" selection-end-column="119" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/ClassGlobals.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomationTest/JointPanelQuotesBelowMinimum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="318" column="30" lean-forward="true" selection-start-line="318" selection-start-column="30" selection-end-line="318" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -707,7 +799,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>selenium-java-3.11.0</last-edited>
+          <last-edited>SeleniumTests</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
