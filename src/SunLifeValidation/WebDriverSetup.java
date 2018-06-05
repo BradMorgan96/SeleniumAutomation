@@ -1,4 +1,4 @@
-package AutomationTest;
+package SunLifeValidation;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
