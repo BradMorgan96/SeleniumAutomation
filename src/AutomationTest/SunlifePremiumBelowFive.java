@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SunlifePremiumBelowFive extends ClassGlobals {
+public class SunlifePremiumBelowFive extends TestBase.ClassGlobals {
 
     @Test
     public void main() throws FileNotFoundException {

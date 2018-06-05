@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class JointPanelQuotesBelowMinimum extends ClassGlobals {
+public class JointPanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
     @Test
     public void main() throws FileNotFoundException {
