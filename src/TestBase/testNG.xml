@@ -6,5 +6,15 @@
       <class name="RegressionTests.LoginUsernameNoPassword" />
     </classes>
   </test>
+  <test name="Automation Test Set 2">
+    <classes>
+      <class name="AutomationTest.SunlifePremiumAsZero"/>
+      <class name="AutomationTest.SunlifeBlankPremium"/>
+      <class name="AutomationTest.SinglePanelQuotesBelowMinimum"/>
+      <class name="AutomationTest.JointPanelQuotesBelowMinimum"/>
+      <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum"/>
+      <class name="AutomationTest.JointPanelQuotesBelowMinimum"/>
+    </classes>
+  </test>
   <!-- CRM_Tests -->
 </suite> <!-- Default Suite -->
