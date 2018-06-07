@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
+public class JointRAPanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
     @Test
     public void main() throws FileNotFoundException {
@@ -66,7 +66,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         }
 
         /* Searches for the Lead */
-        driver().findElement(By.xpath("//*[@id=\"search-basic-term\"]")).sendKeys("3170060");
+        driver().findElement(By.xpath("//*[@id=\"search-basic-term\"]")).sendKeys("3435589");
         driver().findElement(By.xpath("//*[@id=\"SearchBasicForm\"]/span/input")).click();
 
         /* Opens the lead */
@@ -94,8 +94,12 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
             driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
         }
 
+        /* Selects the RA Panel Icon */
+        driver().findElement(By.xpath("//*[@id=\"ra-quote\"]")).click();
+
         /* Define dropdowns and web elements */
         Select drpSmoker = new Select(driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")));
+        Select drpSmoker2 = new Select(driver().findElement(By.xpath("//*[@id=\"smoker_2\"]")));
         Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
         Select drpQuote = new Select(driver().findElement(By.xpath("//*[@id=\"quotation_basis\"]")));
         Select drpCIC = new Select(driver().findElement(By.xpath("//*[@id=\"cic\"]")));
@@ -117,7 +121,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 1: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 1: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
         drpSmoker.selectByIndex(1);
-        overFifty.click();
+        drpSmoker2.selectByIndex(1);
         drpLives.selectByIndex(0);
         drpQuote.selectByVisibleText("Premium");
         drpDeath.selectByIndex(0);
@@ -146,6 +150,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 2: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 2: SINGULAR EXISTING NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
         drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         generateQuote.click();
 
         try {
@@ -166,6 +171,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 3: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 3: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
         drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(2);
         drpGuaranteed.selectByIndex(2);
         generateQuote.click();
 
@@ -186,7 +192,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 4: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 4: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
-        drpSmoker.selectByIndex(2);
+        drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(1);
         drpFrequency.selectByIndex(1);
         generateQuote.click();
@@ -208,7 +215,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 5: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 5: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
-        drpSmoker.selectByIndex(1);
+        drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         percentageCommRet.clear();
         percentageCommRet.sendKeys("80");
         generateQuote.click();
@@ -231,7 +239,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 6: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 6: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
         drpSmoker.selectByIndex(2);
-        drpGuaranteed.selectByIndex(2);
+        drpGuaranteed.selectByIndex(1);
         generateQuote.click();
 
         try {
@@ -252,6 +260,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 7: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 7: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE---");
         drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(1);
         drpLives.selectByIndex(0);
         drpQuote.selectByVisibleText("Premium");
         overFifty.click();
@@ -282,6 +291,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 8: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 8: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE----");
         drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         generateQuote.click();
 
         try {
@@ -301,7 +311,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 9: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 9: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE----");
-        drpSmoker.selectByIndex(1);
+        drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(2);
         generateQuote.click();
 
@@ -322,7 +333,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 10: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 10: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE----");
-        drpSmoker.selectByIndex(2);
+        drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(1);
         drpFrequency.selectByIndex(1);
         generateQuote.click();
@@ -344,7 +356,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 11: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 11: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE----");
-        drpSmoker.selectByIndex(1);
+        drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         percentageCommRet.clear();
         percentageCommRet.sendKeys("80");
         generateQuote.click();
@@ -367,6 +380,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 12: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 12: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE----");
         drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(2);
         generateQuote.click();
 
@@ -388,6 +402,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 13: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 */
         System.out.println("----TEST CASE 13: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5---");
         drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(1);
         drpLives.selectByIndex(0);
         drpQuote.selectByVisibleText("Premium");
         wholeOfLife.click();
@@ -421,6 +436,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 14: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 */
         System.out.println("----TEST CASE 14: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5----");
         drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         toAgeOne.clear();
         toAgeOne.sendKeys("80");
         generateQuote.click();
@@ -442,7 +458,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 15: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 */
         System.out.println("----TEST CASE 9: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5----");
-        drpSmoker.selectByIndex(1);
+        drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(2);
         drpLevelTerm.selectByIndex(2);
         drpCIC.selectByIndex(2);
@@ -466,7 +483,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 16: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 */
         System.out.println("----TEST CASE 16: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5----");
-        drpSmoker.selectByIndex(2);
+        drpSmoker.selectByIndex(1);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(1);
         drpFrequency.selectByIndex(1);
         drpLevelTerm.selectByIndex(1);
@@ -489,7 +507,8 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
         /* TEST CASE 17: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 WHOLE OF LIFE */
         System.out.println("----TEST CASE 17: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5----");
-        drpSmoker.selectByIndex(1);
+        drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(2);
         percentageCommRet.clear();
         percentageCommRet.sendKeys("80");
         drpCIC.selectByIndex(1);
@@ -517,6 +536,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 18: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5 */
         System.out.println("----TEST CASE 18: SINGULAR SMOKER POLICY WITH PREMIUM BELOW 5----");
         drpSmoker.selectByIndex(2);
+        drpSmoker2.selectByIndex(1);
         drpGuaranteed.selectByIndex(2);
         toAgeOne.sendKeys("80");
         generateQuote.click();

@@ -3,12 +3,12 @@
 <suite name="Default Suite" thread-count="4" parallel="tests">
   <test name="Automation Test Set 1">
     <classes>
+      <class name="AutomationTest.SunlifePremiumAsZero"/>
+      <class name="AutomationTest.SunlifeBlankPremium"/>
       <class name="AutomationTest.SinglePanelQuotesBelowMinimum"/>
       <class name="AutomationTest.JointPanelQuotesBelowMinimum"/>
-      <class name="AutomationTest.SunlifeBlankPremium"/>
-      <class name="AutomationTest.SunlifePremiumAsZero"/>
-      <class name="AutomationTest.SunlifePremiumBelowFive"/>
-      <class name="AutomationTest.SunlifePremiumBelowMinimum"/>
+      <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum"/>
+      <class name="AutomationTest.JointPanelQuotesBelowMinimum"/>
     </classes>
   </test>
   <!-- CRM_Tests -->

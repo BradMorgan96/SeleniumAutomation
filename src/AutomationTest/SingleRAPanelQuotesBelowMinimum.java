@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
+public class SingleRAPanelQuotesBelowMinimum extends TestBase.ClassGlobals {
 
     @Test
     public void main() throws FileNotFoundException {
@@ -66,7 +66,7 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         }
 
         /* Searches for the Lead */
-        driver().findElement(By.xpath("//*[@id=\"search-basic-term\"]")).sendKeys("3170060");
+        driver().findElement(By.xpath("//*[@id=\"search-basic-term\"]")).sendKeys("3435589");
         driver().findElement(By.xpath("//*[@id=\"SearchBasicForm\"]/span/input")).click();
 
         /* Opens the lead */
@@ -94,6 +94,9 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
             driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
         }
 
+        /* Selects the RA Panel Icon */
+        driver().findElement(By.xpath("//*[@id=\"ra-quote\"]")).click();
+
         /* Define dropdowns and web elements */
         Select drpSmoker = new Select(driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")));
         Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
@@ -117,7 +120,6 @@ public class SinglePanelQuotesBelowMinimum extends TestBase.ClassGlobals {
         /* TEST CASE 1: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF */
         System.out.println("----TEST CASE 1: SINGULAR NON SMOKER POLICY WITH PREMIUM BELOW 5 GOF----");
         drpSmoker.selectByIndex(1);
-        overFifty.click();
         drpLives.selectByIndex(0);
         drpQuote.selectByVisibleText("Premium");
         drpDeath.selectByIndex(0);
