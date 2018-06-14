@@ -1,6 +1,5 @@
 package Big3;
 
-import TestBase.ClassGlobals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
@@ -19,11 +18,14 @@ import java.util.Date;
 /**
  * Created by hfletcher on 14/06/2018.
  */
-public class SingleLife extends TestBase.ClassGlobals{
+public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
 
     @Test
     public void main(){
         try{
+            //This file contains methods for working out the client age next birthday.
+            Methods methods = new Methods();
+
             /* Define Time Recording Elements */
             Date now = new Date();
             String nowDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
@@ -59,7 +61,7 @@ public class SingleLife extends TestBase.ClassGlobals{
 
             /* Logs into the CRM */
             Select drpGhost = new Select(driver().findElement(By.xpath("//*[@id=\"ghostuser\"]")));
-            driver().findElement(By.id("UserUsername")).sendKeys("mwatts");
+            driver().findElement(By.id("UserUsername")).sendKeys(PackageGlobals.Big3ApprovedSalesUser);
             driver().findElement(By.id("UserPassword")).sendKeys(seleniumPassword);
             drpGhost.selectByVisibleText("Selenium");
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
@@ -100,39 +102,55 @@ public class SingleLife extends TestBase.ClassGlobals{
             drpDeath.selectByVisibleText("1st");
             drpFrequency.selectByVisibleText("Month");
 
-            System.out.println("Selects selected");
+            System.out.println("Life panel quotes selected.");
 
-            Methods methods = new Methods();
-
+            //Set up the client first name
             driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).clear();
             driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).sendKeys("Tester");
+            System.out.println("Client first name cleared and then set.");
 
+            //Set up the client surname
             driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).clear();
             driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).sendKeys("Testeez");
+            System.out.println("Client last name cleared and then set.");
 
-
+            //Set up the life sum assured.
             driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
             driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys("100000");
+            System.out.println("Life Sum Assured cleared and then set.");
 
+            //Set the date of birth
             driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).clear();
             driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(methods.DOBFromAge(25));
+            System.out.println("Client 1 DOB cleared and then set");
 
+            //Set the policy term
             driver().findElement(By.xpath("//*[@id=\"term\"]")).clear();
             driver().findElement(By.xpath("//*[@id=\"term\"]")).sendKeys("25");
+            System.out.println("Policy term set to 25 years");
 
+            //Save the changes
             driver().findElement(By.xpath("//*[@id=\"updateclient\"]")).click();
 
-            Thread.sleep(5000);
+            //Wait
+            Thread.sleep(2500);
+            System.out.println("Changes saved to the lead");
 
+            //Quote the client
             driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
+            System.out.println("Quoting the lead for RA Panel Life Products... Please wait.");
 
+            //Wait for quoteresponses
             Thread.sleep(15000);
+            System.out.println("Quoted the lead for RA Products");
 
             /* Selects the Zurich Quote (Only one currently working) */
-            driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, 'Zurich')]")).click();
+            driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+            System.out.println("Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
             /* Select the Apply for Big 3 CIC button */
             driver().findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
+            System.out.println("Selected the apply for big 3 product");
 
             //Just wait for the page to load properly
             Thread.sleep(5000);
