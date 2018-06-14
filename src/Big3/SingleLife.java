@@ -52,7 +52,6 @@ public class SingleLife extends TestBase.ClassGlobals{
             System.out.println("-------------------------------------------------TEST STARTED-------------------------------------------------");
 
             driver().get(testEnvironment);
-//            Thread.sleep(5000);
 
             /* Logs into the CRM */
             Select drpGhost = new Select(driver().findElement(By.xpath("//*[@id=\"ghostuser\"]")));
@@ -131,17 +130,76 @@ public class SingleLife extends TestBase.ClassGlobals{
             /* Select the Apply for Big 3 CIC button */
             driver().findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
 
+            /**
+             * Now we are at the big3 eligibility page. We will need to enter the client details.
+             * Because we want to check all the outcomes that iptiQ have given us, we're going to do
+             * this in a loop.
+             *
+             * This loop will set the client details, answer the questions, and then go through to the
+             * quoting page.
+             *
+             * When the client has been quoted for the values set, we will check that the premium matches
+             * the expected value.
+             *
+             * At the end of each iteration, the user will be returned to the Big3 eligibility screen so that
+             * the next set of values can be set.
+             */
 
             String[][] SumAssuredCases = QuoteGraph.SingleLifeSumAssured;
 
             for(int i=0; i<SumAssuredCases.length; i++){
+                //Extract all the required values from the array
+                int AgeNextBirthDay = Integer.parseInt(SumAssuredCases[i][1]);
                 String SmokerStatus = SumAssuredCases[i][2];
                 String SumAssured = SumAssuredCases[i][5].replace(",","");
                 String PolicyTerm = SumAssuredCases[i][6];
                 String ExpectedPremium = SumAssuredCases[i][7];
                 String ExpectedCommission = SumAssuredCases[i][8];
 
-                System.out.println(SmokerStatus + " | " + SumAssured + " | " + PolicyTerm + " | " + ExpectedPremium + " | " + ExpectedCommission);
+                //We are going to use a pre set name, as names do not affect the premium.
+                driver().findElement(By.xpath("//*[@id=\"title_1\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"title_1\"]")).sendKeys("Mr");
+                System.out.println("Set customer 1 title");
+                driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).sendKeys("Tester");
+                System.out.println("Set customer 1 forename");
+                driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).sendKeys("Testeez");
+                System.out.println("Set customer 1 surname");
+
+                //Now we are going to set the sex to be male. This does not affect the premium.
+                Select clientOneSexSelect = new Select(driver().findElement(By.xpath("//*[@id=\"gender_1\"]")));
+                clientOneSexSelect.selectByVisibleText("Male");
+                System.out.println("Set customer 1 to male");
+
+                //Now we need to set the smoker status from the value in the customer profile
+                Select clientOneSmokerStat = new Select(driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")));
+                if(SmokerStatus.matches("Smoker")) {
+                    clientOneSmokerStat.selectByVisibleText("Yes");
+                    System.out.println("Customer 1 is a smoker.");
+                } else {
+                    clientOneSmokerStat.selectByVisibleText("No");
+                    System.out.println("Customer 1 is not a smoker.");
+                }
+
+                //Now we need to calculate the date of birth
+                String customerOneDob = methods.DOBFromAge(AgeNextBirthDay);
+                driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(customerOneDob);
+                System.out.println("Customer 1 date of birth set to " + customerOneDob);
+
+                //Now we need to set the sum assured value
+                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
+                System.out.println("Sum assured set to £" + SumAssured);
+
+                //Select the update client details
+                driver().findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
+
+                //Wait for update to complete
+                Thread.sleep(1000);
+                System.out.println("The changes have been saved.");
+
+                Thread.sleep(2500);
             }
         } catch (Exception e){
             e.printStackTrace();
