@@ -3,7 +3,7 @@
 <suite name="Default Suite" thread-count="4" parallel="tests">
   <test name="Automation Test Set 1">
     <classes>
-      <class name="Big3.SingleLifeSumAssuredDriven" />
+      <class name="Big3.JointLifeSumAssuredDriven" />
     </classes>
   </test>
   <!--
