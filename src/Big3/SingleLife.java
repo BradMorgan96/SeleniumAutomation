@@ -2,6 +2,8 @@ package Big3;
 
 import TestBase.ClassGlobals;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -130,6 +133,9 @@ public class SingleLife extends TestBase.ClassGlobals{
             /* Select the Apply for Big 3 CIC button */
             driver().findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
 
+            //Just wait for the page to load properly
+            Thread.sleep(5000);
+
             /**
              * Now we are at the big3 eligibility page. We will need to enter the client details.
              * Because we want to check all the outcomes that iptiQ have given us, we're going to do
@@ -145,9 +151,19 @@ public class SingleLife extends TestBase.ClassGlobals{
              * the next set of values can be set.
              */
 
+            ArrayList<String> tabs = new ArrayList<String>(driver().getWindowHandles());
+            driver().switchTo().window(tabs.get(1));
+            System.out.println("Switched to Big3 Eligibility Tab");
+
+            //Get the fields.
+            WebElement EligibilityTitleOne = driver().findElement(By.xpath("//*[@id=\"title_1\"]"));
+            WebElement EligibilityForenameOne = driver().findElement(By.xpath("//*[@id=\"forename_1\"]"));
+            WebElement EligibilitySurnameOne = driver().findElement(By.xpath("//*[@id=\"surname_1\"]"));
+
             String[][] SumAssuredCases = QuoteGraph.SingleLifeSumAssured;
 
             for(int i=0; i<SumAssuredCases.length; i++){
+
                 //Extract all the required values from the array
                 int AgeNextBirthDay = Integer.parseInt(SumAssuredCases[i][1]);
                 String SmokerStatus = SumAssuredCases[i][2];
@@ -157,14 +173,14 @@ public class SingleLife extends TestBase.ClassGlobals{
                 String ExpectedCommission = SumAssuredCases[i][8];
 
                 //We are going to use a pre set name, as names do not affect the premium.
-                driver().findElement(By.xpath("//*[@id=\"title_1\"]")).clear();
-                driver().findElement(By.xpath("//*[@id=\"title_1\"]")).sendKeys("Mr");
+                EligibilityTitleOne.clear();
+                EligibilityTitleOne.sendKeys("Mr");
                 System.out.println("Set customer 1 title");
-                driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).clear();
-                driver().findElement(By.xpath("//*[@id=\"forename_1\"]")).sendKeys("Tester");
+                EligibilityForenameOne.clear();
+                EligibilityForenameOne.sendKeys("Tester");
                 System.out.println("Set customer 1 forename");
-                driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).clear();
-                driver().findElement(By.xpath("//*[@id=\"surname_1\"]")).sendKeys("Testeez");
+                EligibilitySurnameOne.clear();
+                EligibilitySurnameOne.sendKeys("Testeez");
                 System.out.println("Set customer 1 surname");
 
                 //Now we are going to set the sex to be male. This does not affect the premium.
@@ -184,6 +200,7 @@ public class SingleLife extends TestBase.ClassGlobals{
 
                 //Now we need to calculate the date of birth
                 String customerOneDob = methods.DOBFromAge(AgeNextBirthDay);
+                driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).clear();
                 driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(customerOneDob);
                 System.out.println("Customer 1 date of birth set to " + customerOneDob);
 
@@ -198,6 +215,23 @@ public class SingleLife extends TestBase.ClassGlobals{
                 //Wait for update to complete
                 Thread.sleep(1000);
                 System.out.println("The changes have been saved.");
+
+                //Click the [Confirm] button to display questions
+                driver().findElement(By.xpath("//*[@id=\"confirm_uw_date\"]")).click();
+
+                //Wait
+                Thread.sleep(500);
+
+                //Measure questions
+                boolean IsQuestionsPresent = driver().findElements(By.xpath("//*[@id=\"questions\"]")).size() > 0;
+
+                //Do output
+                if(IsQuestionsPresent){
+                    System.out.println("The eligibility questions were displayed.");
+                } else {
+                    System.out.println("The eligibility questions were NOT displayed.");
+                    throw new ElementNotVisibleException("");
+                }
 
                 Thread.sleep(2500);
             }
