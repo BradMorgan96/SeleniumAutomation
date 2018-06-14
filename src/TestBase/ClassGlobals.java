@@ -10,7 +10,7 @@ public class ClassGlobals extends WebDriverSetup{
     //public static String testEnvironment = "http://owp-test.reassuredpensions.co.uk";
 
     //This is where the selenium hub is located.
-    public static String hubUrl = "http://10.168.206.3:4445/wd/hub";
+    public static String hubUrl = "http://10.168.206.234:4445/wd/hub";
     //Enter the results file location here
     public static   String fileLocation = "T:\\IT QA Team\\Test Results\\DEV-1643\\";
     //Enter the DEV NO. here
