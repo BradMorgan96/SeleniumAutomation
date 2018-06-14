@@ -3,6 +3,7 @@ package Big3;
 import TestBase.ClassGlobals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -162,7 +163,8 @@ public class SingleLife extends TestBase.ClassGlobals{
 
             String[][] SumAssuredCases = QuoteGraph.SingleLifeSumAssured;
 
-            for(int i=0; i<SumAssuredCases.length; i++){
+            //for(int i=0; i<SumAssuredCases.length; i++){
+            for(int i=0; i<1; i++){
 
                 //Extract all the required values from the array
                 int AgeNextBirthDay = Integer.parseInt(SumAssuredCases[i][1]);
@@ -199,15 +201,10 @@ public class SingleLife extends TestBase.ClassGlobals{
                 }
 
                 //Now we need to calculate the date of birth
-                String customerOneDob = methods.DOBFromAge(AgeNextBirthDay);
+                String customerOneDob = methods.DOBFromAge(AgeNextBirthDay - 1);
                 driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).clear();
                 driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(customerOneDob);
                 System.out.println("Customer 1 date of birth set to " + customerOneDob);
-
-                //Now we need to set the sum assured value
-                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
-                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
-                System.out.println("Sum assured set to £" + SumAssured);
 
                 //Select the update client details
                 driver().findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
@@ -232,6 +229,73 @@ public class SingleLife extends TestBase.ClassGlobals{
                     System.out.println("The eligibility questions were NOT displayed.");
                     throw new ElementNotVisibleException("");
                 }
+
+                //Check to see if the buttons for customer 2 are displayed
+                boolean IsCustomer2QuestionPresent = false;
+                try{
+                    IsCustomer2QuestionPresent = driver().findElements(By.xpath("//*[@id=\"client_2_answers\"]")).size() > 0;
+                } catch (NoSuchElementException e){
+                    System.out.println("The eligibility questions for client 2 were not displayed - Good");
+                }
+                if(IsCustomer2QuestionPresent){
+                    System.out.println("TEST FAILED - CUSTOMER 2 ELIGIBILITY QUESTIONS DISPLAYED WHEN THEY SHOULD NOT HAVE BEEN");
+                    throw new Exception("Elements displayed when they should not have been.");
+                }
+
+                //Set the eligibility options
+                driver().findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[1]/span[1]/label/input")).click();
+                driver().findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[2]/span[1]/label/input")).click();
+                driver().findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[3]/span[2]/label/input")).click();
+                driver().findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[4]/span[2]/label/input")).click();
+                driver().findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[5]/span[2]/label/input")).click();
+
+                //Click to confirm eligibility
+                driver().findElement(By.xpath("//*[@id=\"btn_validate_qs\"]")).click();
+                System.out.println("Clicked on the confirm eligibility button.");
+
+                //Click "Continue to quoting page
+                driver().findElement(By.xpath("//*[@id=\"eligibility_questions\"]/div[4]")).click();
+                System.out.println("Clicked on \"Proceed to quote\"");
+
+                //Switch to big 3 quoting tab
+                tabs = new ArrayList<String>(driver().getWindowHandles());
+                driver().switchTo().window(tabs.get(2));
+                System.out.println("Switched to Big3 Quoting Tab");
+
+                //Select the single life radial button.
+                driver().findElement(By.xpath("//*[@id=\"quote_details_single\"]/p[2]/input")).click();
+                System.out.println("Selected single life 1 radial");
+
+                //Enter the term
+                driver().findElement(By.xpath("//*[@id=\"quote_term\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"quote_term\"]")).sendKeys(PolicyTerm);
+                System.out.println("Entered the term on the quoting page");
+
+                //Now we need to set the sum assured value
+                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
+                System.out.println("Sum assured set to £" + SumAssured);
+
+                //Select the get quote button
+                driver().findElement(By.xpath("//*[@id=\"btn_get_quote\"]")).click();
+
+                //Wait for response
+                Thread.sleep(10000);
+
+                //Read the first row of the quote responses table and ensure it matches the expected premium amount
+                String ActualPremium = driver().findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
+                System.out.println("ActualPremium: " + ActualPremium);
+                System.out.println("ExpectPremium: " + ExpectedPremium);
+
+                if(!ExpectedPremium.matches("£" + ActualPremium)){
+                    System.out.println("FAILED! ------- The actual premium did not match the expected premium");
+                } else {
+                    System.out.println("PASSED! ------- The actual premium matched the expected premium");
+                }
+
+                //Close the tab
+                driver().close();
+                driver().switchTo().window( tabs.get(1) );
 
                 Thread.sleep(2500);
             }
