@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Created by hfletcher on 14/06/2018.
  */
-public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
+public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
 
     @Test
     public void main(){
@@ -182,7 +182,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
             WebElement EligibilityForenameOne = driver().findElement(By.xpath("//*[@id=\"forename_1\"]"));
             WebElement EligibilitySurnameOne = driver().findElement(By.xpath("//*[@id=\"surname_1\"]"));
 
-            String[][] SumAssuredCases = QuoteGraph.SingleLifeSumAssured;
+            String[][] SumAssuredCases = QuoteGraph.SingleLifeQuoteByPremium;
 
             for(int i=0; i<SumAssuredCases.length; i++){
             //for(int i=0; i<1; i++){
@@ -190,9 +190,9 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 //Extract all the required values from the array
                 int AgeNextBirthDay = Integer.parseInt(SumAssuredCases[i][1]);
                 String SmokerStatus = SumAssuredCases[i][2];
-                String SumAssured = SumAssuredCases[i][5].replace(",","");
+                String QuotePremium = SumAssuredCases[i][5].replace("£","");
                 String PolicyTerm = SumAssuredCases[i][6];
-                String ExpectedPremium = SumAssuredCases[i][7];
+                String ExpectedSumAssured = SumAssuredCases[i][7].replace("£","").replace(",","");
                 String ExpectedCommission = SumAssuredCases[i][8];
 
                 //We are going to use a pre set name, as names do not affect the premium.
@@ -292,10 +292,15 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 driver().findElement(By.xpath("//*[@id=\"quote_term\"]")).sendKeys(PolicyTerm);
                 System.out.println("Entered the term on the quoting page");
 
+
+                //Select "Quote By Premium"
+                driver().findElement(By.xpath("//*[@id=\"radio_premium\"]")).click();
+                System.out.println("Selected \"Quote By Premium\" radial checkbox.");
+
                 //Now we need to set the sum assured value
-                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
-                driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
-                System.out.println("Sum assured set to £" + SumAssured);
+                driver().findElement(By.xpath("//*[@id=\"premium\"]")).clear();
+                driver().findElement(By.xpath("//*[@id=\"premium\"]")).sendKeys(QuotePremium);
+                System.out.println("Quote Premium set to £" + QuotePremium);
 
                 //Select the get quote button
                 driver().findElement(By.xpath("//*[@id=\"btn_get_quote\"]")).click();
@@ -304,11 +309,11 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 Thread.sleep(10000);
 
                 //Read the first row of the quote responses table and ensure it matches the expected premium amount
-                String ActualPremium = driver().findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
-                System.out.println("ActualPremium: " + ActualPremium);
-                System.out.println("ExpectPremium: " + ExpectedPremium);
+                String ActualSumAssured = driver().findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[4]")).getAttribute("innerText");
+                System.out.println("Actual sum assured: " + ActualSumAssured);
+                System.out.println("Expected sum assured: " + ExpectedSumAssured);
 
-                if(!ExpectedPremium.matches("£" + ActualPremium)){
+                if(!ExpectedSumAssured.matches("£" + ActualSumAssured)){
                     System.out.println("FAILED! ------- The actual premium did not match the expected premium");
                 } else {
                     System.out.println("PASSED! ------- The actual premium matched the expected premium");
