@@ -43,6 +43,6 @@ public class QuoteGraph{
             {"Joint", "41", "NonSmoker", "19", "Smoker_Infrequent", "", "6", "£4.00", "£66.24"},
             {"Joint", "47", "NonSmoker", "41", "Smoker", "", "7", "£77.00", "£1,487.64"},
             {"Joint", "41", "Smoker", "41", "Smoker_Infrequent", "", "11", "£9.98", "£275.45"}
-    }
+    };
 
 }
