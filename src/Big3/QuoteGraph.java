@@ -34,4 +34,15 @@ public class QuoteGraph{
             {"Joint", "33", "Smoker", "33", "Smoker_Infrequent", "1,000", "10", "£0.46", "£12.70"}
     };
 
+    public static String[][] SingleLifeQuoteByPremium = new String[][]{
+            {"Single", "19", "NonSmoker", "N/A", "N/A", "£9.57", "1", "£72,195.00", "£26.41"},
+            {"Single", "37", "NonSmoker", "N/A", "N/A", "£10.10", "10", "£35,488", "£278.76"}
+    };
+
+    public static String[][] JointLifeQuoteByPremium = new String[][]{
+            {"Joint", "41", "NonSmoker", "19", "Smoker_Infrequent", "", "6", "£4.00", "£66.24"},
+            {"Joint", "47", "NonSmoker", "41", "Smoker", "", "7", "£77.00", "£1,487.64"},
+            {"Joint", "41", "Smoker", "41", "Smoker_Infrequent", "", "11", "£9.98", "£275.45"}
+    }
+
 }
