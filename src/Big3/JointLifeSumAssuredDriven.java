@@ -66,19 +66,25 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
             drpGhost.selectByVisibleText("Selenium");
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
+            //Add a new fake lead.
+            int TestLead = methods.AddNewFakeLead();
+
             /* Searches for the Lead */
-            System.out.println(testEnvironment + "/QuoteRequests/view/500199");
-            driver().get(testEnvironment + "/QuoteRequests/view/500199");
+            System.out.println(testEnvironment + "/QuoteRequests/view/" + TestLead);
+            driver().get(testEnvironment + "/QuoteRequests/view/" + TestLead);
 
             System.out.println("Found page");
 
             Thread.sleep(5000);
 
-            /* Close Confirm Quote Details */
-            Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
+            try {
+                /* Close Confirm Quote Details */
+                Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
 
-            if (confirmQuote) {
-                driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
+                if (confirmQuote) {
+                    driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
+                }
+            } catch (Exception e){
             }
 
             System.out.println("Client confirmed");
@@ -159,7 +165,7 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
             System.out.println("Quoted the lead for RA Products");
 
             /* Selects the Zurich Quote (Only one currently working) */
-            driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+            driver().findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
             System.out.println("Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
             /* Select the Apply for Big 3 CIC button */
@@ -363,7 +369,7 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
                 //Enter the term
                 driver().findElement(By.xpath("//*[@id=\"quote_term\"]")).clear();
                 driver().findElement(By.xpath("//*[@id=\"quote_term\"]")).sendKeys(PolicyTerm);
-                System.out.println("Entered the term on the quoting page");
+                System.out.println("Entered the term on the quoting page -> Which is [ " + PolicyTerm + " ] FOR Big 3 CIC");
 
                 //Now we need to set the sum assured value
                 driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
@@ -372,6 +378,7 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
 
                 //Select the get quote button
                 driver().findElement(By.xpath("//*[@id=\"btn_get_quote\"]")).click();
+                System.out.println("Clicked the button to retrieve Big3 CIC quotes. Waiting for 10 seconds.");
 
                 //Wait for response
                 Thread.sleep(10000);

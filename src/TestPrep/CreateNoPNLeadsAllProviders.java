@@ -62,11 +62,11 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             /* Identify the Array */
-            String[][] LeadCases = LeadList.NonPNLeadProvidersAndStatuses;
+            String[][] LeadCases = NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses;
 
             /** Here an a loop is started, which creates a lead for every lead provider which should NOT receive a Privacy Notice */
 
-            for (int i = 0; i < LeadList.NonPNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();

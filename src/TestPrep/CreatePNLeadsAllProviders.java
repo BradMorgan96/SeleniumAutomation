@@ -62,11 +62,11 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             /* Identify the Array */
-            String[][] LeadCases = LeadList.PNLeadProvidersAndStatuses;
+            String[][] LeadCases = PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses;
 
             /** This array adds a mobile number and email address for Client 1 and Client 2 */
             System.out.println("--------------TC1: EMAIL AND MOBILE NUMBER FOR CLIENT 1 AND CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < LeadCases.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -142,7 +142,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a email address for Client 1 and Client 2 */
             System.out.println("--------------TC2: EMAIL FOR CLIENT 1 AND CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -216,7 +216,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number for Client 1 and Client 2 */
             System.out.println("--------------TC3: MOBILE NUMBER FOR CLIENT 1 AND CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -290,7 +290,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number and email address for Client 1 */
             System.out.println("--------------TC4: EMAIL AND MOBILE NUMBER FOR CLIENT 1 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -364,7 +364,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number and email address for Client 1 */
             System.out.println("--------------TC5: EMAIL AND MOBILE NUMBER FOR CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -438,7 +438,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a email address for Client 1 */
             System.out.println("--------------TC6: EMAIL FOR CLIENT 1 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -511,7 +511,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a email address for Client 2 */
             System.out.println("--------------TC7: EMAIL FOR CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -584,7 +584,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number for Client 1 */
             System.out.println("--------------TC8: MOBILE NUMBER FOR CLIENT 1 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -658,7 +658,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number for Client 2 */
             System.out.println("--------------TC9: MOBILE NUMBER FOR CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -731,7 +731,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a email address for Client 1 and a mobile number for Client 1 */
             System.out.println("--------------TC10: EMAIL FOR CLIENT 1 AND MOBILE FOR CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -805,7 +805,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a mobile number for Client 1 and A email address for Client 2 */
             System.out.println("--------------TC11: MOBILE FOR CLIENT 1 AND EMAIL FOR CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -879,7 +879,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a email address for Client 1 with NO Client 2 */
             System.out.println("--------------TC12: EMAIL FOR CLIENT 1 NO CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -939,7 +939,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a email address for Client 2 with NO Client 1 */
             System.out.println("--------------TC13: EMAIL FOR CLIENT 2 TEST NO CLIENT 1--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -1020,7 +1020,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a phone number for Client 1 NO Client 2 */
             System.out.println("--------------TC14: MOBILE NUMBER FOR CLIENT 1 TEST NO CLIENT 2--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -1080,7 +1080,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array just adds a mobile number for Client 2 with NO Client 1 */
             System.out.println("--------------TC15: MOBILE NUMBER FOR CLIENT 2 TEST NO CLIENT 1--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -1161,7 +1161,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a mobile number and email address for Client 1 with NO Client 2 */
             System.out.println("--------------TC16: EMAIL AND MOBILE NUMBER FOR CLIENT 1 NO CLIENT 2 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -1222,7 +1222,7 @@ public class CreatePNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** This array adds a mobile number and email address for Client 2 with NO Client 1 */
             System.out.println("--------------TC17: EMAIL AND MOBILE NUMBER FOR CLIENT 2 NO CLIENT 1 TEST--------------");
-            for (int i = 0; i < LeadList.PNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < PNLeadProvidersAndStatusesOne.PNLeadProvidersAndStatuses.length; i++) {
 
                 /* Select Add Lead */
                 driver().findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
