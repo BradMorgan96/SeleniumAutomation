@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" thread-count="4" parallel="tests">
-  <test name="Automation Test Set 1">
+ <!-- <test name="Automation Test Set 1">
     <classes>
       <class name="Big3.JointLifePremiumDriven" />
     </classes>
-  </test>
-  <!--
-  <test name="Automation Test Set 2">
+  </test> -->
+ <!-- <test name="Automation Test Set 2">
     <classes>
       <class name="AutomationTest.SunlifePremiumAsZero"/>
       <class name="AutomationTest.SunlifeBlankPremium"/>
@@ -16,7 +15,12 @@
       <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum"/>
       <class name="AutomationTest.JointPanelQuotesBelowMinimum"/>
     </classes>
+  </test> -->
+  <test name="Lead Creation Tests">
+          <classes>
+            <class name="TestPrep.CreatePNLeadsAllProviders" />
+            <class name="TestPrep.CreateNoPNLeadsAllProviders" />
+          </classes>
   </test>
-  -->
   <!-- CRM_Tests -->
 </suite> <!-- Default Suite -->
