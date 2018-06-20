@@ -20,5 +20,9 @@ public class ClassGlobals extends WebDriverSetup{
     public static String seleniumPassword = "Tstpasswd@Adrian";
 
     //This file contains methods that are frequently used.
-    public static CommonMethods commonMethods = new CommonMethods();
+    public static CommonMethods com = new CommonMethods();
+
+    //This is the time that test started
+    public static long startTime = System.nanoTime();
+
 }
