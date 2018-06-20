@@ -27,7 +27,4 @@ public class ClassGlobals extends WebDriverSetup{
     //This is the time that test started
     public static long startTime = System.nanoTime();
 
-    //This is the logFile object
-    public static File logFile;
-
 }
