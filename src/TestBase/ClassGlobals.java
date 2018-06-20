@@ -1,5 +1,7 @@
 package TestBase;
 
+import java.io.File;
+
 public class ClassGlobals extends WebDriverSetup{
 
     //This is where we are going to be running our tests
@@ -24,5 +26,8 @@ public class ClassGlobals extends WebDriverSetup{
 
     //This is the time that test started
     public static long startTime = System.nanoTime();
+
+    //This is the logFile object
+    public static File logFile;
 
 }

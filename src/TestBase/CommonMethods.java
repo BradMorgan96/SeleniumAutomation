@@ -113,7 +113,7 @@ public class CommonMethods extends ClassGlobals{
 
         //Generate a fileWriter object
         FileWriter writer = new FileWriter(file);
-        writer.write("-------------------------------------------------TEST STARTED-------------------------------------------------");
+        writer.write("-------------------------------------------------TEST STARTED-------------------------------------------------\r\n");
         writer.close();
 
         //Return the filename
@@ -123,10 +123,10 @@ public class CommonMethods extends ClassGlobals{
     public boolean log(File file, String logMessage){
         try{
             //Set up the writer object.
-            FileWriter writer = new FileWriter( file );
+            FileWriter writer = new FileWriter( file, true );
 
             //Write the message and the time
-            writer.write( System.nanoTime() - startTime + ": " + logMessage );
+            writer.write( System.nanoTime() - startTime + ": " + logMessage + "\r\n");
 
             //close the writer
             writer.close();
