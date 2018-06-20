@@ -1,5 +1,7 @@
 package Big3;
 
+import TestBase.ClassGlobals;
+import TestBase.CommonMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
@@ -20,8 +22,17 @@ import java.util.Date;
  */
 public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
 
+    //This is the logfile to this test.
+    private File logFile;
+
     @Test
     public void main(){
+        try{
+            logFile = com.newLogFile(getClass().getSimpleName());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         try{
             //This file contains methods for working out the client age next birthday.
             Methods methods = new Methods();
@@ -67,7 +78,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             //Add a new fake lead.
-            int TestLead = methods.AddNewFakeLead();
+            int TestLead = methods.AddNewFakeLead(logFile);
 
             /* Searches for the Lead */
             System.out.println(testEnvironment + "/QuoteRequests/view/" + TestLead);
@@ -128,7 +139,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
 
             //Set the date of birth
             driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).clear();
-            driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(methods.DOBFromAge(25));
+            driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys( com.DOBFromAge(25));
             System.out.println("Client 1 DOB cleared and then set");
 
             //Set the policy term
@@ -226,7 +237,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 }
 
                 //Now we need to calculate the date of birth
-                String customerOneDob = methods.DOBFromAge(AgeNextBirthDay - 1);
+                String customerOneDob = com.DOBFromAge(AgeNextBirthDay - 1);
                 driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).clear();
                 driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(customerOneDob);
                 System.out.println("Customer 1 date of birth set to " + customerOneDob);
@@ -347,7 +358,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 Thread.sleep(2500);
             }
         } catch (Exception e){
-            e.printStackTrace();
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
         }
 
 

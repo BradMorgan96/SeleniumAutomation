@@ -19,6 +19,9 @@ import java.util.Date;
  */
 public class UpdateFieldsTests extends TestBase.ClassGlobals{
 
+    //This is the logfile to this test.
+    private File logFile;
+
     //This is the lead used for testing
     private int testLead = 500199;
 
@@ -58,48 +61,36 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
     };
 
     String[] possibleDateOfBirths = new String[]{
-            methods.DOBFromAge(30),
-            methods.DOBFromAge(46),
-            methods.DOBFromAge(49),
-            methods.DOBFromAge(50),
-            methods.DOBFromAge(51),
-            methods.DOBFromAge(18),
-            methods.DOBFromAge(17)
+            com.DOBFromAge(30),
+            com.DOBFromAge(46),
+            com.DOBFromAge(49),
+            com.DOBFromAge(50),
+            com.DOBFromAge(51),
+            com.DOBFromAge(18),
+            com.DOBFromAge(17)
     };
 
     @Test
     public void main(){
+        try{
+            logFile = com.newLogFile(getClass().getSimpleName());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         try {
             /* Define Time Recording Elements */
             Date now = new Date();
             String nowDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
             String nowTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
-            String amendedDate = new SimpleDateFormat("ddMMyyyy").format(new Date());
-            String amendedTime = new SimpleDateFormat("HHmm").format(new Date());
-            long startTime = System.currentTimeMillis();
-
-            /* Setting PrintStream to add results to given text file in a new folder */
-            String className = this.getClass().getSimpleName();
-            File file = new File(fileLocation + "regression" + " " + className + " " + amendedDate + " " + amendedTime + ".txt");
-
-            /* Creating file exception */
-            try {
-                file.createNewFile();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-            /* Setting inputs to go to text document */
-            PrintStream out = new PrintStream(new FileOutputStream(file)); //Add chosen text file here.
-            System.setOut(out);
 
             /* Preliminary info */
-            System.out.println("-----------------------------------------------PRELIMINARY INFO-----------------------------------------------");
-            System.out.println("Current Date: " + nowDate);
-            System.out.println("Current Time: " + nowTime);
+            com.log(logFile, "-----------------------------------------------PRELIMINARY INFO-----------------------------------------------");
+            com.log(logFile, "Current Date: " + nowDate);
+            com.log(logFile, "Current Time: " + nowTime);
 
             /* Opens CRM */
-            System.out.println("-------------------------------------------------TEST STARTED-------------------------------------------------");
+            com.log(logFile, "-------------------------------------------------TEST STARTED-------------------------------------------------");
 
             driver().get(testEnvironment);
 
@@ -111,13 +102,13 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             //Set up the test leads with details that are guaranteed to return quoteresponses.
-            methods.PopulateClientDetails(testLead, 1, "Mr", "Tester", "Testeez", 26, "No", "Male");
-            methods.PopulateClientDetails(testLead, 2, "Mrs", "Testet", "Testeez", 26, "No", "Female");
-            System.out.println("Test data set up on lead " + testLead);
+            methods.PopulateClientDetails(logFile, testLead, 1, "Mr", "Tester", "Testeez", 26, "No", "Male");
+            methods.PopulateClientDetails(logFile, testLead, 2, "Mrs", "Testet", "Testeez", 26, "No", "Female");
+            com.log(logFile, "Test data set up on lead " + testLead);
 
             //Open the quote requests page for this lead.
             driver().get(testEnvironment + "/QuoteRequests/view/"+ testLead);
-            System.out.println(testEnvironment + "/QuoteRequests/view/"+ testLead +" opened");
+            com.log(logFile, testEnvironment + "/QuoteRequests/view/"+ testLead +" opened");
 
             //Wait for page to load.
             Thread.sleep(2500);
@@ -134,26 +125,26 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             }
 
             //Success message.
-            System.out.println("Client confirmed");
+            com.log(logFile, "Client confirmed");
 
             //Wait
             Thread.sleep(500);
 
             //Quote the client RA Panel
             driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
-            System.out.println("Quoting the lead for RA Panel Life Products... Please wait.");
+            com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
             //Wait for quoteresponses
             Thread.sleep(15000);
-            System.out.println("Quoted the lead for RA Products");
+            com.log(logFile, "Quoted the lead for RA Products");
 
             /* Selects the Zurich Quote (Only one currently working) */
             driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
-            System.out.println("Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
+            com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
             /* Select the Apply for Big 3 CIC button */
             driver().findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
-            System.out.println("Selected the apply for big 3 product");
+            com.log(logFile, "Selected the apply for big 3 product");
 
             //Wait
             Thread.sleep(2500);
@@ -161,7 +152,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             //Switch to the eligibility tab
             ArrayList<String> tabs = new ArrayList<String>(driver().getWindowHandles());
             driver().switchTo().window(tabs.get(1));
-            System.out.println("Switched to Big3 Eligibility Tab");
+            com.log(logFile, "Switched to Big3 Eligibility Tab");
 
             //Get the URL so we can return to this page
             String returnUrl = driver().getCurrentUrl();
@@ -174,14 +165,14 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             Updates("title", "Mr", "Mrs", possibleTitles);
             Updates("forename", "Tester", "Testet", possibleFirstNames);
             Updates("surname", "Testeez", "Testeez", possibleSurNames);
-            Updates("dob", methods.DOBFromAge(26), methods.DOBFromAge(26), possibleDateOfBirths);
+            Updates("dob", com.DOBFromAge(26), com.DOBFromAge(26), possibleDateOfBirths);
 
         } catch (Exception e){
-            e.printStackTrace();
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
         }
 
         driver().quit();
-        System.out.println("-------------------------------------------------TEST FINISHED-------------------------------------------------");
+        com.log(logFile, "-------------------------------------------------TEST FINISHED-------------------------------------------------");
     }
 
     public void Updates(String fieldName, String initialOne, String initialTwo, String[] possibleValues) {
@@ -199,18 +190,18 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 //Update title 1 field
                 FieldOne.clear();
                 FieldOne.sendKeys(possibleValues[i]);
-                System.out.println("Set forename to " + possibleValues[i]);
+                com.log(logFile, "Set forename to " + possibleValues[i]);
 
                 //Click to update lead.
                 saveCustDetails.click();
-                System.out.println("Clicked to update client details");
+                com.log(logFile, "Clicked to update client details");
 
                 //Wait for save
                 Thread.sleep(750);
 
                 //Open the lead in lead view.
                 driver().get(testEnvironment + "/leads/view/" + testLead);
-                System.out.println("Loaded the test lead in lead view.");
+                com.log(logFile, "Loaded the test lead in lead view.");
 
                 //Wait for load
                 Thread.sleep(5000);
@@ -221,18 +212,18 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                     getLeadCallsAlert.dismiss();
                     throw new Exception("Alert managed exception");
                 } catch (Exception e) {
-                    System.out.println("Handled getLeadCalls alert appropriately.");
+                    com.log(logFile, "Handled getLeadCalls alert appropriately.");
                 }
 
                 //Get the value in the title_1 field
                 String titleText = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).getAttribute("value");
-                System.out.println("Extracted " + titleText + " from the field.");
+                com.log(logFile, "Extracted " + titleText + " from the field.");
 
                 //Check if it matches the set value
                 if (!possibleValues[i].matches(titleText)) {
-                    System.out.println("FAIL --- The "+ fieldName +" field did not update successfully for customer 1");
+                    com.log(logFile, "FAIL --- The "+ fieldName +" field did not update successfully for customer 1");
                 } else {
-                    System.out.println("PASS --- The "+ fieldName +" field updated successfully for customer 1");
+                    com.log(logFile, "PASS --- The "+ fieldName +" field updated successfully for customer 1");
                 }
 
                 //Re load the eligibility page
@@ -242,7 +233,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 Thread.sleep(2500);
 
                 //Success
-                System.out.println("Re loaded the eligibility page. Done.");
+                com.log(logFile, "Re loaded the eligibility page. Done.");
             }
 
             //Set the field back to what it was
@@ -259,18 +250,18 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 //Update title 1 field
                 FieldTwo.clear();
                 FieldTwo.sendKeys(possibleValues[i]);
-                System.out.println("Set title to " + possibleValues[i]);
+                com.log(logFile, "Set title to " + possibleValues[i]);
 
                 //Click to update lead.
                 saveCustDetails.click();
-                System.out.println("Clicked to update client details");
+                com.log(logFile, "Clicked to update client details");
 
                 //Wait for save
                 Thread.sleep(750);
 
                 //Open the lead in lead view.
                 driver().get(testEnvironment + "/leads/view/" + testLead);
-                System.out.println("Loaded the test lead in lead view.");
+                com.log(logFile, "Loaded the test lead in lead view.");
 
                 //Wait for load
                 Thread.sleep(5000);
@@ -281,18 +272,18 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                     getLeadCallsAlert.dismiss();
                     throw new Exception("Alert managed exception");
                 } catch (Exception e) {
-                    System.out.println("Handled getLeadCalls alert appropriately.");
+                    com.log(logFile, "Handled getLeadCalls alert appropriately.");
                 }
 
                 //Get the value in the title_1 field
                 String titleText = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).getAttribute("value");
-                System.out.println("Extracted " + titleText + " from the field.");
+                com.log(logFile, "Extracted " + titleText + " from the field.");
 
                 //Check if it matches the set value
                 if (!possibleValues[i].matches(titleText)) {
-                    System.out.println("FAIL --- The "+ fieldName +" field did not update successfully for client 2");
+                    com.log(logFile, "FAIL --- The "+ fieldName +" field did not update successfully for client 2");
                 } else {
-                    System.out.println("PASS --- The "+ fieldName +" field updated successfully for client 2");
+                    com.log(logFile, "PASS --- The "+ fieldName +" field updated successfully for client 2");
                 }
 
                 //Re load the eligibility page
@@ -302,7 +293,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 Thread.sleep(2500);
 
                 //Success
-                System.out.println("Re loaded the eligibility page. Done.");
+                com.log(logFile, "Re loaded the eligibility page. Done.");
             }
 
             //Set the field back to what it was

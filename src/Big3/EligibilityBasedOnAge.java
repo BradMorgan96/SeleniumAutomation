@@ -16,6 +16,9 @@ import java.util.Date;
  */
 public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
 
+    //Create a new log file for this test.
+    private File logFile;
+
     public String[][] CustomerDetailsSingleLife = new String[][]{
             {"No", "17", "false", "Male"},      //This client is too young
             {"No", "17", "false", "Male"},      //This client is too young
@@ -62,6 +65,12 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
     @Test
     public void main(){
         try {
+            logFile = com.newLogFile(getClass().getSimpleName());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
             //This file contains methods for working out the client age next birthday.
             Methods methods = new Methods();
 
@@ -69,32 +78,14 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
             Date now = new Date();
             String nowDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
             String nowTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
-            String amendedDate = new SimpleDateFormat("ddMMyyyy").format(new Date());
-            String amendedTime = new SimpleDateFormat("HHmm").format(new Date());
-            long startTime = System.currentTimeMillis();
-
-            /* Setting PrintStream to add results to given text file in a new folder */
-            String className = this.getClass().getSimpleName();
-            File file = new File(fileLocation + "regression" + " " + className + " " + amendedDate + " " + amendedTime + ".txt");
-
-            /* Creating file exception */
-            try {
-                file.createNewFile();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-            /* Setting inputs to go to text document */
-            PrintStream out = new PrintStream(new FileOutputStream(file)); //Add chosen text file here.
-            System.setOut(out);
 
             /* Preliminary info */
-            System.out.println("-----------------------------------------------PRELIMINARY INFO-----------------------------------------------");
-            System.out.println("Current Date: " + nowDate);
-            System.out.println("Current Time: " + nowTime);
+            com.log(logFile, "-----------------------------------------------PRELIMINARY INFO-----------------------------------------------");
+            com.log(logFile, "Current Date: " + nowDate);
+            com.log(logFile, "Current Time: " + nowTime);
 
             /* Opens CRM */
-            System.out.println("-------------------------------------------------TEST STARTED-------------------------------------------------");
+            com.log(logFile, "-------------------------------------------------TEST STARTED-------------------------------------------------");
 
             driver().get(testEnvironment);
 
@@ -106,7 +97,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
             driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             //Clear client 2 on the test lead because we are quoting single.
-            methods.EraseClientDetails(500199, 2);
+            methods.EraseClientDetails(logFile, 500199, 2);
 
             //We want to do single life quoting now
             for (int i=0; i<CustomerDetailsSingleLife.length; i++){
@@ -119,12 +110,12 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 Boolean IsApplicable = ( CustomerDetailsSingleLife[i][2].matches("true") );
 
                 //Set up the lead customer 1 with these details.
-                methods.PopulateClientDetails(500199, 1, Title, Forename, Surname, Integer.parseInt(CustomerDetailsSingleLife[i][1]), SmokerStatus, Gender );
-                System.out.println("Populated client details.");
+                methods.PopulateClientDetails(logFile, 500199, 1, Title, Forename, Surname, Integer.parseInt(CustomerDetailsSingleLife[i][1]), SmokerStatus, Gender );
+                com.log(logFile, "Populated client details.");
 
                 //Open the quoting page.
                 driver().findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
-                System.out.println("Navigate to quoting page.");
+                com.log(logFile, "Navigate to quoting page.");
 
                 Thread.sleep(5000);
 
@@ -135,7 +126,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                     driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
                 }
 
-                System.out.println("Client confirmed");
+                com.log(logFile, "Client confirmed");
 
                 /* Define dropdowns and web elements */
                 Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
@@ -156,19 +147,19 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 drpFrequency.selectByVisibleText("Month");
 
                 //Message.
-                System.out.println("Life quote options selected.");
+                com.log(logFile, "Life quote options selected.");
 
                 //Click on generate quotes.
                 driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
-                System.out.println("Quoting the lead for RA Panel Life Products... Please wait.");
+                com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
                 //Wait for quoteresponses
                 Thread.sleep(15000);
-                System.out.println("Quoted the lead for RA Products");
+                com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
                 driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
-                System.out.println("Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
+                com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
                 Thread.sleep(2500);
@@ -179,27 +170,27 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 boolean buttonIsPresent = false;
                 try {
                     buttonIsPresent = driver().findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
-                    System.out.println("Checking to see if button is present...");
+                    com.log(logFile, "Checking to see if button is present...");
                 } catch ( Exception e){
-                    System.out.println("Checking to see if button is present...");
+                    com.log(logFile, "Checking to see if button is present...");
                 }
 
                 //Should the button be there?
                 if (buttonIsPresent && !IsApplicable) {
-                    System.out.println("FAIL! - The Big3 CIC button was displayed not applicably");
+                    com.log(logFile, "FAIL! - The Big3 CIC button was displayed not applicably");
                 } else {
 
                     if(IsApplicable){
-                        System.out.println("PASS! - The Big3 CIC button was displayed when it should have been.");
+                        com.log(logFile, "PASS! - The Big3 CIC button was displayed when it should have been.");
                     } else {
-                        System.out.println("PASS! - The Big3 CIC button was not displayed when it should not have been.");
+                        com.log(logFile, "PASS! - The Big3 CIC button was not displayed when it should not have been.");
                     }
 
                 }
             }
 
             //Start test set 2
-            System.out.println("------------------------------------------START JOINT LIFE TEST CASES-----------------------------------------");
+            com.log(logFile, "------------------------------------------START JOINT LIFE TEST CASES-----------------------------------------");
 
             //We want to do single life quoting now
             for (int i=0; i<CustomerDetailsJointLife.length; i++){
@@ -222,13 +213,13 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 Boolean IsApplicable = ( CustomerJointDetails[6].matches("true") );
 
                 //Set up the lead customer 1&2 with these details.
-                methods.PopulateClientDetails(500199, 1, TitleOne, ForenameOne, SurnameOne, Integer.parseInt(CustomerJointDetails[1]), SmokerStatusOne, GenderOne );
-                methods.PopulateClientDetails(500199, 2, TitleTwo, ForenameTwo, SurnameTwo, Integer.parseInt(CustomerJointDetails[4]), SmokerStatusTwo, GenderTwo );
-                System.out.println("Populated client details.");
+                methods.PopulateClientDetails(logFile, 500199, 1, TitleOne, ForenameOne, SurnameOne, Integer.parseInt(CustomerJointDetails[1]), SmokerStatusOne, GenderOne );
+                methods.PopulateClientDetails(logFile, 500199, 2, TitleTwo, ForenameTwo, SurnameTwo, Integer.parseInt(CustomerJointDetails[4]), SmokerStatusTwo, GenderTwo );
+                com.log(logFile, "Populated client details.");
 
                 //Open the quoting page.
                 driver().findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
-                System.out.println("Navigate to quoting page.");
+                com.log(logFile, "Navigate to quoting page.");
 
                 Thread.sleep(5000);
 
@@ -239,7 +230,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                     driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
                 }
 
-                System.out.println("Client confirmed");
+                com.log(logFile, "Client confirmed");
 
                 /* Define dropdowns and web elements */
                 Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
@@ -260,19 +251,19 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 drpFrequency.selectByVisibleText("Month");
 
                 //Message.
-                System.out.println("Life quote options selected.");
+                com.log(logFile, "Life quote options selected.");
 
                 //Click on generate quotes.
                 driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
-                System.out.println("Quoting the lead for RA Panel Life Products... Please wait.");
+                com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
                 //Wait for quoteresponses
                 Thread.sleep(15000);
-                System.out.println("Quoted the lead for RA Products");
+                com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
                 driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
-                System.out.println("Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
+                com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
                 Thread.sleep(2500);
@@ -283,30 +274,30 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 boolean buttonIsPresent = false;
                 try {
                     buttonIsPresent = driver().findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
-                    System.out.println("Checking to see if button is present...");
+                    com.log(logFile, "Checking to see if button is present...");
                 } catch ( Exception e){
-                    System.out.println("Checking to see if button is present...");
+                    com.log(logFile, "Checking to see if button is present...");
                 }
 
                 //Should the button be there?
                 if (buttonIsPresent && !IsApplicable) {
-                    System.out.println("FAIL! - The Big3 CIC button was displayed not applicably");
+                    com.log(logFile, "FAIL! - The Big3 CIC button was displayed not applicably");
                 } else {
 
                     if(IsApplicable){
-                        System.out.println("PASS! - The Big3 CIC button was displayed when it should have been.");
+                        com.log(logFile, "PASS! - The Big3 CIC button was displayed when it should have been.");
                     } else {
-                        System.out.println("PASS! - The Big3 CIC button was not displayed when it should not have been.");
+                        com.log(logFile, "PASS! - The Big3 CIC button was not displayed when it should not have been.");
                     }
 
                 }
             }
         } catch (Exception e){
-            System.out.println("WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
         }
 
         //Finish the test
-        System.out.println("-------------------------------------------------TEST FINISHED-------------------------------------------------");
+        com.log(logFile, "-------------------------------------------------TEST FINISHED-------------------------------------------------");
         driver().quit();
     }
 }
