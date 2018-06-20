@@ -21,11 +21,20 @@ public class Methods extends TestBase.ClassGlobals{
         driver().findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(com.DOBFromAge(25));
         driver().findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys("10000");
 
-        Select SexSelect = new Select( driver().findElement(By.xpath("//*[@id=\"gender_1\"]")) );
-        Select SmokerSelect = new Select( driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")) );
+        driver().findElement(By.xpath("//*[@id=\"title_2\"]")).sendKeys("Mrs");
+        driver().findElement(By.xpath("//*[@id=\"forename_2\"]")).sendKeys("Testet");
+        driver().findElement(By.xpath("//*[@id=\"surname_2\"]")).sendKeys("Testeez");
+        driver().findElement(By.xpath("//*[@id=\"dob_2\"]")).sendKeys(com.DOBFromAge(25));
 
-        SexSelect.selectByVisibleText("Male");
-        SmokerSelect.selectByVisibleText("No");
+        Select SexSelect1 = new Select( driver().findElement(By.xpath("//*[@id=\"gender_1\"]")) );
+        Select SexSelect2 = new Select( driver().findElement(By.xpath("//*[@id=\"gender_2\"]")) );
+        Select SmokerSelect1 = new Select( driver().findElement(By.xpath("//*[@id=\"smoker_1\"]")) );
+        Select SmokerSelect2= new Select( driver().findElement(By.xpath("//*[@id=\"smoker_2\"]")) );
+
+        SexSelect1.selectByVisibleText("Male");
+        SexSelect2.selectByVisibleText("Female");
+        SmokerSelect1.selectByVisibleText("No");
+        SmokerSelect2.selectByVisibleText("No");
 
         Select LifeSelect = new Select( driver().findElement(By.xpath("//*[@id=\"life\"]")) );
         Select CICSelect = new Select( driver().findElement(By.xpath("//*[@id=\"cic\"]")) );

@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class CommonMethods extends ClassGlobals{
 
-    public boolean userLogin(String username) {
+    public boolean userLogin(File logFile, String username) {
         try {
             /**
              * This method allows a user to log in as any other user
@@ -37,29 +37,29 @@ public class CommonMethods extends ClassGlobals{
             //Find the ghost user drop down and select "Selenium"
             Select ghostUserSelect = new Select(driver().findElement(By.xpath("//*[@id=\"ghostuser\"]")));
             ghostUserSelect.selectByVisibleText("Selenium");
-            System.out.println("LOGIN - SELECTED [ SELENIUM ] FROM GHOST LOGIN LIST");
+            com.log(logFile, "LOGIN - SELECTED [ SELENIUM ] FROM GHOST LOGIN LIST");
 
             //Enter the username
             userUsername.sendKeys(username);
-            System.out.println("LOGIN - ENTERED ( " + username + " ) INTO USERNAME FIELD");
+            com.log(logFile, "LOGIN - ENTERED ( " + username + " ) INTO USERNAME FIELD");
 
             //Enter the password
             userPassword.sendKeys(seleniumPassword);
-            System.out.println("LOGIN - ENTERED ( " + seleniumPassword + " ) INTO PASSWORD FIELD");
+            com.log(logFile, "LOGIN - ENTERED ( " + seleniumPassword + " ) INTO PASSWORD FIELD");
 
             //Select the login button
             loginButton.click();
-            System.out.println("LOGIN - CLICKED LOGIN BUTTON");
+            com.log(logFile, "LOGIN - CLICKED LOGIN BUTTON");
 
             //Wait for login to complete, takes a long time because of user controller.
             Thread.sleep(5000);
 
             //See if the login error is displayed
-            System.out.println("-----LOGIN SUCCESS-----");
+            com.log(logFile, "-----LOGIN SUCCESS-----");
             return driver().findElements(By.xpath("//*[@id=\"flashMessage\"]")).size() == 0;
 
         } catch (Exception e) {
-            System.out.println("-----LOGIN FAILURE-----");
+            com.log(logFile, "-----LOGIN FAILURE-----");
             return false;
         }
     }

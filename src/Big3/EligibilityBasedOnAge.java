@@ -20,8 +20,6 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
     private File logFile;
 
     public String[][] CustomerDetailsSingleLife = new String[][]{
-            {"No", "17", "false", "Male"},      //This client is too young
-            {"No", "17", "false", "Male"},      //This client is too young
             {"Yes", "18", "true", "Male"},     //This client is too young
             {"Yes", "18", "true", "Male"},     //This client is too young
             {"No", "19", "true", "Male"},       //This client can be offered big 3
@@ -158,7 +156,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
-                driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+                driver().findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
                 com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
@@ -262,7 +260,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
-                driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+                driver().findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
                 com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
@@ -293,7 +291,8 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 }
             }
         } catch (Exception e){
-            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
+            e.printStackTrace();
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
         }
 
         //Finish the test
