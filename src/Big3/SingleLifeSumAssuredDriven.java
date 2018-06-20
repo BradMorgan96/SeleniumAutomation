@@ -308,15 +308,36 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 //Wait for response
                 Thread.sleep(10000);
 
-                //Read the first row of the quote responses table and ensure it matches the expected premium amount
-                String ActualPremium = driver().findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
-                System.out.println("ActualPremium: " + ActualPremium);
-                System.out.println("ExpectPremium: " + ExpectedPremium);
+                if( Float.parseFloat( ExpectedPremium.replace("£","") ) < 4.00 ){
+                    System.out.println("The expected sum assured was going to be less than the minimum premium amount. This will produce an error");
+                    System.out.println("Here is the error text:");
 
-                if(!ExpectedPremium.matches("£" + ActualPremium)){
-                    System.out.println("FAILED! ------- The actual premium did not match the expected premium");
+                    String errorText = driver().findElement(By.xpath("//*[@id=\"quote_api_errors\"]")).getAttribute("innerText");
+
+                    System.out.println("    " + errorText);
+
+                    System.out.println("Expected error text:");
+
+                    System.out.println("    Quotation failed because, based on the Sum assured provided The calculated premium value of Critical Illness is " + ExpectedPremium.replace("£","") +", which is less than the minimum premium value 4 required for this benefit.");
+
+                    if(errorText.matches("Quotation failed because, based on the Sum assured provided The calculated premium value of Critical Illness is " + ExpectedPremium.replace("£","") +", which is less than the minimum premium value 4 required for this benefit.")){
+                        System.out.println("PASSED! ------- The actual sum assured matched the expected sum assured");
+                    } else {
+                        System.out.println("FAILED! ------- The actual sum assured did not match the expected sum assured");
+                    }
                 } else {
-                    System.out.println("PASSED! ------- The actual premium matched the expected premium");
+
+                    //Read the first row of the quote responses table and ensure it matches the expected premium amount
+                    String ActualPremium = driver().findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
+                    System.out.println("ActualPremium: " + ActualPremium);
+                    System.out.println("ExpectPremium: " + ExpectedPremium);
+
+                    if (!ExpectedPremium.matches("£" + ActualPremium)) {
+                        System.out.println("FAILED! ------- The actual premium did not match the expected premium");
+                    } else {
+                        System.out.println("PASSED! ------- The actual premium matched the expected premium");
+                    }
+
                 }
 
                 //Close the tab
