@@ -11,13 +11,14 @@ public class ClassGlobals extends WebDriverSetup{
     //public static String testEnvironment = "http://owp-test.reassuredpensions.co.uk";
 
     //This is where the selenium hub is located.
-    public static String hubUrl = "http://10.168.206.234:4445/wd/hub";        //Harvey Workstation
-    //public static String hubUrl = "http://10.168.206.3:4445/wd/hub";          //Brad Workstation
-    //public static String hubUrl = "http://10.168.206.15:4445/wd/hub";         //Chris Workstation
+    public static String hubUrl = "http://10.168.206.234:4445/wd/hub";
     //Enter the results file location here
     public static   String fileLocation = "T:\\IT QA Team\\Test Results\\DEV-1643\\";
     //Enter the DEV NO. here
-    public static   String devNo = "DEV-1713";
+    public static   String devNo = "DEV-1643";
 
     public static String seleniumPassword = "Tstpasswd@Adrian";
+
+    //This file contains methods that are frequently used.
+    public static CommonMethods commonMethods = new CommonMethods();
 }
