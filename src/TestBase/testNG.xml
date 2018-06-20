@@ -8,7 +8,8 @@
                 <class name="TestPrep.CreatePNLeadsAllProviders" />
                 <class name="TestPrep.CreateNoPNLeadsAllProviders" />
             <!-- Big 3 Tests -->
-                <class name="Big3.EligibilityBasedOnAge" />
+<!--                <class name="Big3.EligibilityBasedOnAge" />     -->
+                <class name="Big3.UpdateFieldsTests" />
                 <class name="Big3.JointLifePremiumDriven" />
                 <class name="Big3.JointLifeSumAssuredDriven" />
                 <class name="Big3.SingleLifePremiumDriven" />

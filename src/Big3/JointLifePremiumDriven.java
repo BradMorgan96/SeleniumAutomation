@@ -60,7 +60,7 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
             }
 
             //Add a new fake lead.
-            int TestLead = methods.AddNewFakeLead(logFile);
+            int TestLead = methods.AddNewFakeLead(driver, logFile);
             
             /* Searches for the Lead */
             com.log(logFile, testEnvironment + "/QuoteRequests/view/" + TestLead);

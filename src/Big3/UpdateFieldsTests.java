@@ -1,7 +1,9 @@
 package Big3;
 
+import TestBase.WebDriverSetup;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
@@ -70,9 +72,15 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             com.DOBFromAge(17)
     };
 
+    private WebDriverSetup webDriverSetup;
+    private WebDriver driver;
+
     @Test
     public void main(){
         try{
+            webDriverSetup = new WebDriverSetup();
+            driver = webDriverSetup.driver();
+
             logFile = com.newLogFile(getClass().getSimpleName());
         } catch (Exception e){
             e.printStackTrace();
@@ -92,22 +100,22 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             /* Opens CRM */
             com.log(logFile, "-------------------------------------------------TEST STARTED-------------------------------------------------");
 
-            driver().get(testEnvironment);
+            driver.get(testEnvironment);
 
             /* Logs into the CRM */
-            Select drpGhost = new Select(driver().findElement(By.xpath("//*[@id=\"ghostuser\"]")));
-            driver().findElement(By.id("UserUsername")).sendKeys(PackageGlobals.Big3ApprovedSalesUser);
-            driver().findElement(By.id("UserPassword")).sendKeys(seleniumPassword);
+            Select drpGhost = new Select(driver.findElement(By.xpath("//*[@id=\"ghostuser\"]")));
+            driver.findElement(By.id("UserUsername")).sendKeys(PackageGlobals.Big3ApprovedSalesUser);
+            driver.findElement(By.id("UserPassword")).sendKeys(seleniumPassword);
             drpGhost.selectByVisibleText("Selenium");
-            driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
+            driver.findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             //Set up the test leads with details that are guaranteed to return quoteresponses.
-            methods.PopulateClientDetails(logFile, testLead, 1, "Mr", "Tester", "Testeez", 26, "No", "Male");
-            methods.PopulateClientDetails(logFile, testLead, 2, "Mrs", "Testet", "Testeez", 26, "No", "Female");
+            methods.PopulateClientDetails(driver, logFile, testLead, 1, "Mr", "Tester", "Testeez", 26, "No", "Male");
+            methods.PopulateClientDetails(driver, logFile, testLead, 2, "Mrs", "Testet", "Testeez", 26, "No", "Female");
             com.log(logFile, "Test data set up on lead " + testLead);
 
             //Open the quote requests page for this lead.
-            driver().get(testEnvironment + "/QuoteRequests/view/"+ testLead);
+            driver.get(testEnvironment + "/QuoteRequests/view/"+ testLead);
             com.log(logFile, testEnvironment + "/QuoteRequests/view/"+ testLead +" opened");
 
             //Wait for page to load.
@@ -115,10 +123,10 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
 
             //If the [Confirm client details] button us displayed, click it.
             try {
-                Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
+                Boolean confirmQuote = driver.findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
 
                 if (confirmQuote) {
-                    driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
+                    driver.findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
                 }
             } catch (Exception e){
 
@@ -131,7 +139,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             Thread.sleep(500);
 
             //Quote the client RA Panel
-            driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
+            driver.findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
             com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
             //Wait for quoteresponses
@@ -139,23 +147,23 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             com.log(logFile, "Quoted the lead for RA Products");
 
             /* Selects the Zurich Quote (Only one currently working) */
-            driver().findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+            driver.findElement(By.xpath("//*[contains(@id, 'quote-0')]//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
             com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
             /* Select the Apply for Big 3 CIC button */
-            driver().findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
+            driver.findElement(By.xpath("//*[@id=\"apply_for_big3\"]")).click();
             com.log(logFile, "Selected the apply for big 3 product");
 
             //Wait
             Thread.sleep(2500);
 
             //Switch to the eligibility tab
-            ArrayList<String> tabs = new ArrayList<String>(driver().getWindowHandles());
-            driver().switchTo().window(tabs.get(1));
+            ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
             com.log(logFile, "Switched to Big3 Eligibility Tab");
 
             //Get the URL so we can return to this page
-            String returnUrl = driver().getCurrentUrl();
+            String returnUrl = driver.getCurrentUrl();
 
             //This is the customer title
             String cust1Title = "Mr";
@@ -171,21 +179,21 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName());
         }
 
-        driver().quit();
+        driver.quit();
         com.log(logFile, "-------------------------------------------------TEST FINISHED-------------------------------------------------");
     }
 
     public void Updates(String fieldName, String initialOne, String initialTwo, String[] possibleValues) {
         try {
             //Get the URL so we can return to this page
-            String returnUrl = driver().getCurrentUrl();
+            String returnUrl = driver.getCurrentUrl();
 
             //Try all the possible titles for customer 1
             for (int i = 0; i < possibleValues.length; i++) {
 
                 //This is the title field
-                WebElement FieldOne = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]"));
-                WebElement saveCustDetails = driver().findElement(By.xpath("//*[@id=\"update_lead\"]"));
+                WebElement FieldOne = driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]"));
+                WebElement saveCustDetails = driver.findElement(By.xpath("//*[@id=\"update_lead\"]"));
 
                 //Update title 1 field
                 FieldOne.clear();
@@ -200,7 +208,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 Thread.sleep(750);
 
                 //Open the lead in lead view.
-                driver().get(testEnvironment + "/leads/view/" + testLead);
+                driver.get(testEnvironment + "/leads/view/" + testLead);
                 com.log(logFile, "Loaded the test lead in lead view.");
 
                 //Wait for load
@@ -208,7 +216,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
 
                 //Handle getLeadCalls alert
                 try {
-                    Alert getLeadCallsAlert = driver().switchTo().alert();
+                    Alert getLeadCallsAlert = driver.switchTo().alert();
                     getLeadCallsAlert.dismiss();
                     throw new Exception("Alert managed exception");
                 } catch (Exception e) {
@@ -216,7 +224,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 }
 
                 //Get the value in the title_1 field
-                String titleText = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).getAttribute("value");
+                String titleText = driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).getAttribute("value");
                 com.log(logFile, "Extracted " + titleText + " from the field.");
 
                 //Check if it matches the set value
@@ -227,7 +235,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 }
 
                 //Re load the eligibility page
-                driver().get(returnUrl);
+                driver.get(returnUrl);
 
                 //Wait
                 Thread.sleep(2500);
@@ -237,15 +245,15 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             }
 
             //Set the field back to what it was
-            driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).clear();
-            driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).sendKeys(initialOne);
-            driver().findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
+            driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).clear();
+            driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_1\"]")).sendKeys(initialOne);
+            driver.findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
             Thread.sleep(750);
 
             //Try all the possible titles
             for (int i = 0; i < possibleValues.length; i++) {
-                WebElement FieldTwo = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]"));
-                WebElement saveCustDetails = driver().findElement(By.xpath("//*[@id=\"update_lead\"]"));
+                WebElement FieldTwo = driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]"));
+                WebElement saveCustDetails = driver.findElement(By.xpath("//*[@id=\"update_lead\"]"));
 
                 //Update title 1 field
                 FieldTwo.clear();
@@ -260,7 +268,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 Thread.sleep(750);
 
                 //Open the lead in lead view.
-                driver().get(testEnvironment + "/leads/view/" + testLead);
+                driver.get(testEnvironment + "/leads/view/" + testLead);
                 com.log(logFile, "Loaded the test lead in lead view.");
 
                 //Wait for load
@@ -268,7 +276,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
 
                 //Handle getLeadCalls alert
                 try {
-                    Alert getLeadCallsAlert = driver().switchTo().alert();
+                    Alert getLeadCallsAlert = driver.switchTo().alert();
                     getLeadCallsAlert.dismiss();
                     throw new Exception("Alert managed exception");
                 } catch (Exception e) {
@@ -276,7 +284,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 }
 
                 //Get the value in the title_1 field
-                String titleText = driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).getAttribute("value");
+                String titleText = driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).getAttribute("value");
                 com.log(logFile, "Extracted " + titleText + " from the field.");
 
                 //Check if it matches the set value
@@ -287,7 +295,7 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
                 }
 
                 //Re load the eligibility page
-                driver().get(returnUrl);
+                driver.get(returnUrl);
 
                 //Wait
                 Thread.sleep(2500);
@@ -297,9 +305,9 @@ public class UpdateFieldsTests extends TestBase.ClassGlobals{
             }
 
             //Set the field back to what it was
-            driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).clear();
-            driver().findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).sendKeys(initialTwo);
-            driver().findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
+            driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).clear();
+            driver.findElement(By.xpath("//*[@id=\""+ fieldName +"_2\"]")).sendKeys(initialTwo);
+            driver.findElement(By.xpath("//*[@id=\"update_lead\"]")).click();
             Thread.sleep(750);
 
         } catch (Exception e) {

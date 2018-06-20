@@ -1,8 +1,10 @@
 package Big3;
 
+import TestBase.WebDriverSetup;
 import org.apache.xpath.operations.Bool;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
@@ -20,8 +22,6 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
     private File logFile;
 
     public String[][] CustomerDetailsSingleLife = new String[][]{
-            {"Yes", "18", "true", "Male"},     //This client is too young
-            {"Yes", "18", "true", "Male"},     //This client is too young
             {"No", "19", "true", "Male"},       //This client can be offered big 3
             {"Yes", "26", "true", "Male"},
             {"No", "26", "true", "Male"},
@@ -34,7 +34,6 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
     };
 
     public String[][] CustomerDetailsJointLife = new String[][]{
-            {"No",  "17",  "Male", "No", "17", "Female", "false", "none"},
             {"No",  "18",  "Male", "No", "17", "Female", "false", "one"},
             {"No",  "17",  "Male", "No", "18", "Female", "true", "two"},
 
@@ -60,9 +59,15 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
             {"Yes", "51",  "Male", "Yes", "51", "Female", "true", "none"},
     };
 
+    private WebDriverSetup webDriverSetup;
+    private WebDriver driver;
+
     @Test
     public void main(){
-        try {
+        try{
+            webDriverSetup = new WebDriverSetup();
+            driver = webDriverSetup.driver();
+
             logFile = com.newLogFile(getClass().getSimpleName());
         } catch (Exception e){
             e.printStackTrace();
@@ -85,17 +90,17 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
             /* Opens CRM */
             com.log(logFile, "-------------------------------------------------TEST STARTED-------------------------------------------------");
 
-            driver().get(testEnvironment);
+            driver.get(testEnvironment);
 
             /* Logs into the CRM */
-            Select drpGhost = new Select(driver().findElement(By.xpath("//*[@id=\"ghostuser\"]")));
-            driver().findElement(By.id("UserUsername")).sendKeys(PackageGlobals.Big3ApprovedSalesUser);
-            driver().findElement(By.id("UserPassword")).sendKeys(seleniumPassword);
+            Select drpGhost = new Select(driver.findElement(By.xpath("//*[@id=\"ghostuser\"]")));
+            driver.findElement(By.id("UserUsername")).sendKeys(PackageGlobals.Big3ApprovedSalesUser);
+            driver.findElement(By.id("UserPassword")).sendKeys(seleniumPassword);
             drpGhost.selectByVisibleText("Selenium");
-            driver().findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
+            driver.findElement(By.xpath("//*[@id=\"UserLoginForm\"]/div[2]/input")).click();
 
             //Clear client 2 on the test lead because we are quoting single.
-            methods.EraseClientDetails(logFile, 500199, 2);
+            methods.EraseClientDetails(driver, logFile, 500199, 2);
 
             //We want to do single life quoting now
             for (int i=0; i<CustomerDetailsSingleLife.length; i++){
@@ -108,32 +113,32 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 Boolean IsApplicable = ( CustomerDetailsSingleLife[i][2].matches("true") );
 
                 //Set up the lead customer 1 with these details.
-                methods.PopulateClientDetails(logFile, 500199, 1, Title, Forename, Surname, Integer.parseInt(CustomerDetailsSingleLife[i][1]), SmokerStatus, Gender );
+                methods.PopulateClientDetails(driver, logFile, 500199, 1, Title, Forename, Surname, Integer.parseInt(CustomerDetailsSingleLife[i][1]), SmokerStatus, Gender );
                 com.log(logFile, "Populated client details.");
 
                 //Open the quoting page.
-                driver().findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
+                driver.findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
                 com.log(logFile, "Navigate to quoting page.");
 
                 Thread.sleep(5000);
 
                 /* Close Confirm Quote Details */
-                Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
+                Boolean confirmQuote = driver.findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
 
                 if (confirmQuote) {
-                    driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
+                    driver.findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
                 }
 
                 com.log(logFile, "Client confirmed");
 
                 /* Define dropdowns and web elements */
-                Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
-                Select drpQuote = new Select(driver().findElement(By.xpath("//*[@id=\"quotation_basis\"]")));
-                Select drpCIC = new Select(driver().findElement(By.xpath("//*[@id=\"cic\"]")));
-                Select drpLevelTerm = new Select(driver().findElement(By.xpath("//*[@id=\"level_term\"]")));
-                Select drpGuaranteed = new Select(driver().findElement(By.xpath("//*[@id=\"guaranteed\"]")));
-                Select drpDeath = new Select(driver().findElement(By.xpath("//*[@id=\"death\"]")));
-                Select drpFrequency = new Select(driver().findElement(By.xpath("//*[@id=\"payment_frequency\"]")));
+                Select drpLives = new Select(driver.findElement(By.xpath("//*[@id=\"life_covered\"]")));
+                Select drpQuote = new Select(driver.findElement(By.xpath("//*[@id=\"quotation_basis\"]")));
+                Select drpCIC = new Select(driver.findElement(By.xpath("//*[@id=\"cic\"]")));
+                Select drpLevelTerm = new Select(driver.findElement(By.xpath("//*[@id=\"level_term\"]")));
+                Select drpGuaranteed = new Select(driver.findElement(By.xpath("//*[@id=\"guaranteed\"]")));
+                Select drpDeath = new Select(driver.findElement(By.xpath("//*[@id=\"death\"]")));
+                Select drpFrequency = new Select(driver.findElement(By.xpath("//*[@id=\"payment_frequency\"]")));
 
                 //Set the quote so we will get results back.
                 drpLives.selectByIndex(0);
@@ -148,7 +153,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Life quote options selected.");
 
                 //Click on generate quotes.
-                driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
+                driver.findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
                 com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
                 //Wait for quoteresponses
@@ -156,7 +161,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
-                driver().findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+                driver.findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
                 com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
@@ -167,7 +172,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 //Assume the button is not there.
                 boolean buttonIsPresent = false;
                 try {
-                    buttonIsPresent = driver().findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
+                    buttonIsPresent = driver.findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
                     com.log(logFile, "Checking to see if button is present...");
                 } catch ( Exception e){
                     com.log(logFile, "Checking to see if button is present...");
@@ -211,33 +216,33 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 Boolean IsApplicable = ( CustomerJointDetails[6].matches("true") );
 
                 //Set up the lead customer 1&2 with these details.
-                methods.PopulateClientDetails(logFile, 500199, 1, TitleOne, ForenameOne, SurnameOne, Integer.parseInt(CustomerJointDetails[1]), SmokerStatusOne, GenderOne );
-                methods.PopulateClientDetails(logFile, 500199, 2, TitleTwo, ForenameTwo, SurnameTwo, Integer.parseInt(CustomerJointDetails[4]), SmokerStatusTwo, GenderTwo );
+                methods.PopulateClientDetails(driver, logFile, 500199, 1, TitleOne, ForenameOne, SurnameOne, Integer.parseInt(CustomerJointDetails[1]), SmokerStatusOne, GenderOne );
+                methods.PopulateClientDetails(driver, logFile, 500199, 2, TitleTwo, ForenameTwo, SurnameTwo, Integer.parseInt(CustomerJointDetails[4]), SmokerStatusTwo, GenderTwo );
                 com.log(logFile, "Populated client details.");
 
                 //Open the quoting page.
-                driver().findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
+                driver.findElement(By.xpath("//*[@id=\"mini-quotes\"]")).click();
                 com.log(logFile, "Navigate to quoting page.");
 
                 Thread.sleep(5000);
 
                 /* Close Confirm Quote Details */
-                Boolean confirmQuote = driver().findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
+                Boolean confirmQuote = driver.findElements(By.xpath("//*[@id=\"confirmclient\"]")).size() > 0;
 
                 if (confirmQuote) {
-                    driver().findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
+                    driver.findElement(By.xpath("//*[@id=\"confirmclient\"]")).click();
                 }
 
                 com.log(logFile, "Client confirmed");
 
                 /* Define dropdowns and web elements */
-                Select drpLives = new Select(driver().findElement(By.xpath("//*[@id=\"life_covered\"]")));
-                Select drpQuote = new Select(driver().findElement(By.xpath("//*[@id=\"quotation_basis\"]")));
-                Select drpCIC = new Select(driver().findElement(By.xpath("//*[@id=\"cic\"]")));
-                Select drpLevelTerm = new Select(driver().findElement(By.xpath("//*[@id=\"level_term\"]")));
-                Select drpGuaranteed = new Select(driver().findElement(By.xpath("//*[@id=\"guaranteed\"]")));
-                Select drpDeath = new Select(driver().findElement(By.xpath("//*[@id=\"death\"]")));
-                Select drpFrequency = new Select(driver().findElement(By.xpath("//*[@id=\"payment_frequency\"]")));
+                Select drpLives = new Select(driver.findElement(By.xpath("//*[@id=\"life_covered\"]")));
+                Select drpQuote = new Select(driver.findElement(By.xpath("//*[@id=\"quotation_basis\"]")));
+                Select drpCIC = new Select(driver.findElement(By.xpath("//*[@id=\"cic\"]")));
+                Select drpLevelTerm = new Select(driver.findElement(By.xpath("//*[@id=\"level_term\"]")));
+                Select drpGuaranteed = new Select(driver.findElement(By.xpath("//*[@id=\"guaranteed\"]")));
+                Select drpDeath = new Select(driver.findElement(By.xpath("//*[@id=\"death\"]")));
+                Select drpFrequency = new Select(driver.findElement(By.xpath("//*[@id=\"payment_frequency\"]")));
 
                 //Set the quote so we will get results back.
                 drpLives.selectByIndex(0);
@@ -252,7 +257,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Life quote options selected.");
 
                 //Click on generate quotes.
-                driver().findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
+                driver.findElement(By.xpath("//*[@id=\"quoteclient\"]")).click();
                 com.log(logFile, "Quoting the lead for RA Panel Life Products... Please wait.");
 
                 //Wait for quoteresponses
@@ -260,7 +265,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 com.log(logFile, "Quoted the lead for RA Products");
 
                 /* Selects the Zurich Quote (Only one currently working) */
-                driver().findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
+                driver.findElement(By.xpath("//*[contains(@alt, '"+ PackageGlobals.Big3ApprovedProvider +"')]")).click();
                 com.log(logFile, "Selected the "+ PackageGlobals.Big3ApprovedProvider +" quote provider");
 
                 //Just wait for the page to load properly
@@ -271,7 +276,7 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
                 //Assume the button is not there.
                 boolean buttonIsPresent = false;
                 try {
-                    buttonIsPresent = driver().findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
+                    buttonIsPresent = driver.findElements(By.xpath("//*[@id=\"apply_for_big3\"]")).size() > 0;
                     com.log(logFile, "Checking to see if button is present...");
                 } catch ( Exception e){
                     com.log(logFile, "Checking to see if button is present...");
@@ -297,6 +302,6 @@ public class EligibilityBasedOnAge extends TestBase.ClassGlobals {
 
         //Finish the test
         com.log(logFile, "-------------------------------------------------TEST FINISHED-------------------------------------------------");
-        driver().quit();
+        driver.quit();
     }
 }

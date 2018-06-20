@@ -5,8 +5,8 @@ import java.io.File;
 public class ClassGlobals extends WebDriverSetup{
 
     //This is where we are going to be running our tests
-    public static String testEnvironment = "http://test.reassuredpensions.co.uk";
-    //public static String testEnvironment = "http://crm.dev-1485.test.local";
+    //public static String testEnvironment = "http://test.reassuredpensions.co.uk";
+    public static String testEnvironment = "http://crm.dev-1485.test.local";
     //public static String testEnvironment = "http://staging.reassuredpensions.co.uk";
     //public static String testEnvironment = "http://blue.reassuredpensions.co.uk";
     //public static String testEnvironment = "http://yellow.reassuredpensions.co.uk";

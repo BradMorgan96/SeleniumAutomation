@@ -62,8 +62,8 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
             }
 
             //Add a new fake lead.
-            int TestLead = methods.AddNewFakeLead(logFile);
-            methods.EraseClientDetails(logFile, TestLead, 2);
+            int TestLead = methods.AddNewFakeLead(driver, logFile);
+            methods.EraseClientDetails(driver, logFile, TestLead, 2);
 
             /* Searches for the Lead */
             com.log(logFile,testEnvironment + "/QuoteRequests/view/" + TestLead);
