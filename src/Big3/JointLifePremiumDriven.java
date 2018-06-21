@@ -394,6 +394,9 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                     com.log(logFile, "PASSED! ------- The actual sum assured matched the expected sum assured");
                 }
 
+                //Get the Big3 Reference number
+                methods.GetAndLogReferenceNumber(driver, logFile);
+
                 //Close the tab
                 driver.close();
                 driver.switchTo().window( tabs.get(1) );

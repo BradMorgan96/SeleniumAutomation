@@ -326,14 +326,17 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
 
                     //Read the first row of the quote responses table and ensure it matches the expected premium amount
                     String ActualPremium = driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
-                    com.log(logFile,"ActualPremium: " + ActualPremium);
-                    com.log(logFile,"ExpectPremium: " + ExpectedPremium);
+                    com.log(logFile, "ActualPremium: " + ActualPremium);
+                    com.log(logFile, "ExpectPremium: " + ExpectedPremium);
 
                     if (!ExpectedPremium.matches("£" + ActualPremium)) {
-                        com.log(logFile,"FAILED! ------- The actual premium did not match the expected premium");
+                        com.log(logFile, "FAILED! ------- The actual premium did not match the expected premium");
                     } else {
-                        com.log(logFile,"PASSED! ------- The actual premium matched the expected premium");
+                        com.log(logFile, "PASSED! ------- The actual premium matched the expected premium");
                     }
+
+                    //Get the Big3 Reference number
+                    methods.GetAndLogReferenceNumber(driver, logFile);
 
                 }
 

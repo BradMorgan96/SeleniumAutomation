@@ -409,6 +409,9 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
                         com.log(logFile, "PASSED! ------- The actual premium matched the expected premium");
                     }
 
+                    //Get the Big3 Reference number
+                    methods.GetAndLogReferenceNumber(driver, logFile);
+
                 }
 
                 //Close the tab

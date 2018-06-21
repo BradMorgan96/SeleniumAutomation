@@ -183,4 +183,50 @@ public class Methods extends TestBase.ClassGlobals{
             e.printStackTrace();
         }
     }
+
+    public void GetAndLogReferenceNumber(WebDriver driver, File logFile){
+        try {
+            //Now we need to select the [Start Application] button for that quote
+            driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button")).click();
+
+            //Wait for a reference number to be returned
+            Thread.sleep(2500);
+
+            //This is where we will store the ref number
+            String referenceNumber = null;
+
+            //There's an alert that gets displayed
+            try {
+                //Get the alert
+                Alert alert = driver().switchTo().alert();
+
+                //Get the text from the alert
+                referenceNumber = alert.getText();
+
+                //Close the alert.
+                alert.dismiss();
+            } catch (Exception e) {
+                com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
+            }
+
+            String compiledMessage = "\r\n";
+
+            compiledMessage += "+------------------------------------------+\r\n";
+            compiledMessage += "|   A BIG THREE REF NUMBER WAS RETRIEVED   |\r\n";
+            compiledMessage += "+------------------------------------------+\r\n";
+            compiledMessage += "| Here is the Big3 Reference number alert: |\r\n";
+            compiledMessage += "|                                          |\r\n";
+            compiledMessage += "| "           + referenceNumber +        " |\r\n";
+            compiledMessage += "+------------------------------------------+\r\n";
+            compiledMessage += "| These are the customer details used:     |\r\n";
+            compiledMessage += "|                                          |\r\n";
+
+            com.log(logFile, compiledMessage);
+
+            com.log(logFile, driver.findElement(By.xpath("//*[@id=\"body-column\"]/div[3]/div[2]")).getAttribute("innerText") + "\r\n\r\n+------------------------------------------+\n");
+        } catch (Exception e){
+            e.printStackTrace();
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
+        }
+    }
 }
