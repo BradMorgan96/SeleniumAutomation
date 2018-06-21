@@ -2,6 +2,7 @@ package CreateLeadsEveryProvider;
 
 import TestBase.CommonMethods;
 import TestBase.WebDriverSetup;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -184,6 +185,12 @@ public class EveryLeadProviderYesPrivacyNotice extends TestBase.ClassGlobals{
                     com.log(logFile, "ERROR: There was an unexpected error. " + e.getClass().getSimpleName());
                     driver.quit();
                     return;
+                }
+
+                try{
+                    Alert getLeadCallsAlert = driver().switchTo().alert();
+                    getLeadCallsAlert.dismiss();//We need to delay the starting of this test so that we don't get
+                } catch (Exception e){
                 }
 
                 //Log

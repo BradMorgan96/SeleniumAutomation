@@ -173,8 +173,8 @@ public class EveryLeadProviderNoPrivacyNotice extends TestBase.ClassGlobals{
                 // a race condition. CRM does not like those.
                 try{
                     //These are in milliseconds
-                    int minDelay = 1000;
-                    int maxDelay = 500;
+                    int minDelay = 500;
+                    int maxDelay = 1000;
 
                     //This is used to gen the rand delay
                     Random randDelay = new Random();
@@ -182,12 +182,11 @@ public class EveryLeadProviderNoPrivacyNotice extends TestBase.ClassGlobals{
                     //Calculate the random
                     int delayStartBy = randDelay.nextInt(maxDelay - minDelay) + minDelay;
 
-                    //Delay by that amount
-                    driver.manage().timeouts().wait(delayStartBy);
-                    Thread.sleep(delayStartBy);
+                    Thread t = new Thread();
+                    t.sleep(delayStartBy);
 
                     //log
-                    com.log(logFile, "INFO: Delayed the start of this test by " + delayStartBy + "ms so that we don't get a race condition.");
+                    com.log(logFile, "INFO: Delayed the this test by " + delayStartBy + "ms so that we don't get a race condition.");
                 } catch (Exception e){
                     e.printStackTrace();
                 }
