@@ -183,25 +183,17 @@ public class TC3_FuneralPlans extends TestBase.ClassGlobals {
             driver.findElement(By.xpath("//*[@id=\"town_1\"]")).clear();
             driver.findElement(By.xpath("//*[@id=\"town_1\"]")).sendKeys("Basingstoke");
 
-            //Plan holder representative
-            driver.findElement(By.xpath("//*[@id=\"rep_title_1\"]")).clear();
-            driver.findElement(By.xpath("//*[@id=\"rep_title_1\"]")).sendKeys("Mrs");
-
-            driver.findElement(By.xpath("//*[@id=\"rep_first_name_1\"]")).clear();
-            driver.findElement(By.xpath("//*[@id=\"rep_first_name_1\"]")).sendKeys("Testez");
-
-            driver.findElement(By.xpath("//*[@id=\"rep_surname_1\"]")).clear();
-            driver.findElement(By.xpath("//*[@id=\"rep_surname_1\"]")).sendKeys("Testeez");
-
-            driver.findElement(By.xpath("//*[@id=\"rep_dob\"]")).clear();
-            driver.findElement(By.xpath("//*[@id=\"rep_dob\"]")).sendKeys(com.DOBFromAge(55));
-
             //Plan details
             Date d = new Date();
             SimpleDateFormat SDF = new SimpleDateFormat();
             String nowDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
             driver.findElement(By.xpath("//*[@id=\"start_date\"]")).sendKeys(nowDate);
             driver.findElement(By.xpath("//*[@id=\"first_payment_date\"]")).sendKeys(nowDate);
+
+            driver.findElement(By.xpath("//*[@id=\"dob\"]")).clear();
+            driver.findElement(By.xpath("//*[@id=\"dob\"]")).sendKeys(com.DOBFromAge(55));
+
+            driver.findElement(By.xpath("//*[@id=\"policy-details-add\"]")).click();
         } catch (Exception e){
             e.printStackTrace();
             com.log(logFile, "ERROR: Couldn't quote the lead for funeral. " + e.getClass().getSimpleName());
@@ -211,7 +203,7 @@ public class TC3_FuneralPlans extends TestBase.ClassGlobals {
 
         com.log(logFile, "INFO: Sold an FP Policy!");
         try {
-            Thread.sleep(500);
+            Thread.sleep(2500);
         }catch (Exception e){
             e.printStackTrace();
         }
