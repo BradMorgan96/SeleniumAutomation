@@ -27,6 +27,7 @@
             <!-- Sprint Tasks -->
                 <class name="DEV1765_NoContactAfterField.TC1_NoContactAfterSunLifeGOF" />
                 <class name="DEV1765_NoContactAfterField.TC2_NoContactAfterRAPanel" />
+                <class name="DEV1765_NoContactAfterField.TC3_FuneralPlans" />
         </classes>
     </test>
 </suite>
