@@ -24,6 +24,9 @@
                 <class name="AutomationTest.JointRAPanelQuotesBelowMinimum" />
                 <class name="AutomationTest.SinglePanelQuotesBelowMinimum" />
                 <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum" />
+            <!-- Sprint Tasks -->
+                <class name="DEV1765_NoContactAfterField.TC1_NoContactAfterSunLifeGOF" />
+                <class name="DEV1765_NoContactAfterField.TC2_NoContactAfterRAPanel" />
         </classes>
     </test>
 </suite>
