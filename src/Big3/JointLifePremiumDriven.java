@@ -190,15 +190,6 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
             driver.switchTo().window(tabs.get(1));
             com.log(logFile, "Switched to Big3 Eligibility Tab");
 
-            //Get the fields.
-            WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
-            WebElement EligibilityForenameOne = driver.findElement(By.xpath("//*[@id=\"forename_1\"]"));
-            WebElement EligibilitySurnameOne = driver.findElement(By.xpath("//*[@id=\"surname_1\"]"));
-
-            WebElement EligibilityTitleTwo = driver.findElement(By.xpath("//*[@id=\"title_2\"]"));
-            WebElement EligibilityForenameTwo = driver.findElement(By.xpath("//*[@id=\"forename_2\"]"));
-            WebElement EligibilitySurnameTwo = driver.findElement(By.xpath("//*[@id=\"surname_2\"]"));
-
             String[][] SumAssuredCases = QuoteGraph.JointLifeQuoteByPremium;
 
             for(int i=0; i<SumAssuredCases.length; i++){
@@ -208,6 +199,15 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 String QuotePremium = SumAssuredCases[i][7].replace("£","");
                 String PolicyTerm = SumAssuredCases[i][6];
                 String ExpectedSumAssured = SumAssuredCases[i][5].replace("£","").replace(",","");
+
+                //Get the fields.
+                WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
+                WebElement EligibilityForenameOne = driver.findElement(By.xpath("//*[@id=\"forename_1\"]"));
+                WebElement EligibilitySurnameOne = driver.findElement(By.xpath("//*[@id=\"surname_1\"]"));
+
+                WebElement EligibilityTitleTwo = driver.findElement(By.xpath("//*[@id=\"title_2\"]"));
+                WebElement EligibilityForenameTwo = driver.findElement(By.xpath("//*[@id=\"forename_2\"]"));
+                WebElement EligibilitySurnameTwo = driver.findElement(By.xpath("//*[@id=\"surname_2\"]"));
 
                 //Extract all the required values from the array for customer 1
                 int C1AgeNextBirthDay = Integer.parseInt(SumAssuredCases[i][1]);
@@ -350,7 +350,7 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 com.log(logFile, "Clicked on the confirm eligibility button.");
 
                 //Click "Continue to quoting page
-                driver.findElement(By.xpath("//*[@id=\"eligibility_questions\"]/div[4]")).click();
+                driver.findElement(By.xpath("//*[@id=\"a_proceed_to_quote\"]")).click();
                 com.log(logFile, "Clicked on \"Proceed to quote\"");
 
                 //Switch to big 3 quoting tab

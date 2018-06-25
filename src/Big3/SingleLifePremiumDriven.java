@@ -175,11 +175,6 @@ public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
             driver.switchTo().window(tabs.get(1));
             com.log(logFile, "Switched to Big3 Eligibility Tab");
 
-            //Get the fields.
-            WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
-            WebElement EligibilityForenameOne = driver.findElement(By.xpath("//*[@id=\"forename_1\"]"));
-            WebElement EligibilitySurnameOne = driver.findElement(By.xpath("//*[@id=\"surname_1\"]"));
-
             String[][] SumAssuredCases = QuoteGraph.SingleLifeQuoteByPremium;
 
             for(int i=0; i<SumAssuredCases.length; i++){
@@ -192,6 +187,11 @@ public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
                 String PolicyTerm = SumAssuredCases[i][6];
                 String ExpectedSumAssured = SumAssuredCases[i][7].replace("£","").replace(",","");
                 String ExpectedCommission = SumAssuredCases[i][8];
+
+                //Get the fields.
+                WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
+                WebElement EligibilityForenameOne = driver.findElement(By.xpath("//*[@id=\"forename_1\"]"));
+                WebElement EligibilitySurnameOne = driver.findElement(By.xpath("//*[@id=\"surname_1\"]"));
 
                 //We are going to use a pre set name, as names do not affect the premium.
                 EligibilityTitleOne.clear();
@@ -273,7 +273,7 @@ public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
                 com.log(logFile, "Clicked on the confirm eligibility button.");
 
                 //Click "Continue to quoting page
-                driver.findElement(By.xpath("//*[@id=\"eligibility_questions\"]/div[4]")).click();
+                driver.findElement(By.xpath("//*[@id=\"a_proceed_to_quote\"]")).click();
                 com.log(logFile, "Clicked on \"Proceed to quote\"");
 
                 //Switch to big 3 quoting tab

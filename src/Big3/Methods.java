@@ -190,7 +190,7 @@ public class Methods extends TestBase.ClassGlobals{
             driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button")).click();
 
             //Wait for a reference number to be returned
-            Thread.sleep(2500);
+            Thread.sleep(4000);
 
             //This is where we will store the ref number
             String referenceNumber = null;
