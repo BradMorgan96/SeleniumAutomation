@@ -132,7 +132,7 @@ public class CommonMethods extends ClassGlobals{
             //Write the message and the time
             writer.write( System.nanoTime() - startTime + ": " + logMessage + "\r\n" );
 
-            logToDB(logMessage, Thread.currentThread().getStackTrace()[2].getClassName());
+//            logToDB(logMessage, Thread.currentThread().getStackTrace()[2].getClassName());
 
             //close the writer
             writer.close();
