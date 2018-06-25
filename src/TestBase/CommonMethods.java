@@ -7,6 +7,10 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -126,7 +130,9 @@ public class CommonMethods extends ClassGlobals{
             FileWriter writer = new FileWriter( file, true );
 
             //Write the message and the time
-            writer.write( System.nanoTime() - startTime + ": " + logMessage + "\r\n");
+            writer.write( System.nanoTime() - startTime + ": " + logMessage + "\r\n" );
+
+            logToDB(logMessage, Thread.currentThread().getStackTrace()[2].getClassName());
 
             //close the writer
             writer.close();
@@ -135,6 +141,24 @@ public class CommonMethods extends ClassGlobals{
             return true;
         } catch (Exception e){
             return false;
+        }
+    }
+
+    public void logToDB(String message, String className){
+        try {
+            //Connect to the database
+            Connection con = DriverManager.getConnection("jdbc:mysql://" + ClassGlobals.DBHost + ":3306/test_results", ClassGlobals.DBUser, ClassGlobals.DBPass);
+
+            //Start the statement
+            Statement stmt = con.createStatement();
+
+            //This is the query we need to use to insert into the database.
+            String query = "INSERT INTO SeleniumAutomationLog (`class_name`,`environment`,`run_start`,`log_time`,`message`) VALUES ('"+ className +"','"+ testEnvironment +"','"+ startTime +"','"+ System.nanoTime() +"','"+ message.replace("\\r\\n", "\\\r\\\n") +"')";
+
+            //Execute the statement
+            stmt.executeUpdate(query);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
