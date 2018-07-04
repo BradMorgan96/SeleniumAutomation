@@ -91,11 +91,17 @@ public class CommonMethods extends ClassGlobals{
             }
 
             SimpleDateFormat simpleDays = new SimpleDateFormat("d");
+
+            String Day = simpleDays.format(myCal.getTime());
+
+            if (Integer.parseInt(Day) < 10) {
+                Day = "0" + Day;
+            }
+
             SimpleDateFormat simpleYears = new SimpleDateFormat("Y");
-            String days = simpleDays.format(myCal.getTime());
             String months = simpleYears.format(myCal.getTime());
 
-            String DateOfBirth = days + "/" + Month + "/" + months;
+            String DateOfBirth = Day + "/" + Month + "/" + months;
 
             return DateOfBirth;
         } catch (Exception e){
