@@ -34,8 +34,8 @@ public class QuoteGraph{
     };
 
     public static String[][] SingleLifeQuoteByPremium = new String[][]{
-            {"Single", "22/10/1999", "NonSmoker", "N/A", "N/A", "£9.57", "1", "£72,195.00", "£26.41"},
-            {"Single", "17/11/1981", "NonSmoker", "N/A", "N/A", "£10.10", "10", "£35,488", "£278.76"}
+            {"Single", "31/10/1999", "NonSmoker", "£9.57", "1", "£72,277.00", "100"},
+            {"Single", "17/11/1981", "NonSmoker", "£10.10", "10", "£35,488", "100"}
     };
 
     public static String[][] JointLifeQuoteByPremium = new String[][]{

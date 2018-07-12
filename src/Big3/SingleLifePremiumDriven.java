@@ -190,10 +190,10 @@ public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
                 //Extract all the required values from the array
                 String CustOneDob = SumAssuredCases[i][1];
                 String SmokerStatus = SumAssuredCases[i][2];
-                String QuotePremium = SumAssuredCases[i][5].replace("£","");
-                String PolicyTerm = SumAssuredCases[i][6];
-                String ExpectedSumAssured = SumAssuredCases[i][7].replace("£","").replace(",","");
-                String ExpectedCommission = SumAssuredCases[i][8];
+                String QuotePremium = SumAssuredCases[i][3].replace("£","");
+                String PolicyTerm = SumAssuredCases[i][4];
+                String ExpectedSumAssured = SumAssuredCases[i][5].replace("£","").replace(",","");
+                String CommissionRet = SumAssuredCases[i][6];
 
                 //Get the fields.
                 WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
@@ -312,6 +312,11 @@ public class SingleLifePremiumDriven extends TestBase.ClassGlobals{
                 driver.findElement(By.xpath("//*[@id=\"premium\"]")).clear();
                 driver.findElement(By.xpath("//*[@id=\"premium\"]")).sendKeys(QuotePremium);
                 com.log(logFile, "Quote Premium set to £" + QuotePremium);
+
+                //Now we need to enter the commission retention value
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).clear();
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).sendKeys(CommissionRet);
+                com.log(logFile, "Commission retention is " + CommissionRet + "%");
 
                 try{
                     WebDriverWait wait = new WebDriverWait(driver, 5);
