@@ -205,6 +205,7 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
                 String SumAssured = SumAssuredCases[i][5].replace(",","");
                 String PolicyTerm = SumAssuredCases[i][6];
                 String ExpectedPremium = SumAssuredCases[i][7];
+                String CommissionRet = SumAssuredCases[i][8];
 
                 //Get the fields.
                 WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
@@ -383,6 +384,11 @@ public class JointLifeSumAssuredDriven extends TestBase.ClassGlobals {
                 driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
                 driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
                 com.log(logFile, "Sum assured set to £" + SumAssured);
+
+                //Now we need to enter the commission retention value
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).clear();
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).sendKeys(CommissionRet);
+                com.log(logFile, "Commission retention is " + CommissionRet + "%");
 
                 try{
                     WebDriverWait wait = new WebDriverWait(driver, 5);

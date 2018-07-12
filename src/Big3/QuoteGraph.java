@@ -23,14 +23,14 @@ public class QuoteGraph{
     };
 
     public static String[][] JointLifeSumAssured = new String[][]{
-            {"Joint", "10/10/1968", "NonSmoker", "10/10/1968", "NonSmoker", "10,000", "10", "£15.54", "£428.90"},
-            {"Joint", "10/10/1999", "Smoker", "10/10/1999", "NonSmoker", "45,678", "15", "£11.14", "£245.97"},
-            {"Joint", "10/10/1999", "Smoker", "10/10/1968", "Smoker", "33,000", "10", "£35.01", "£483.14"},
-            {"Joint", "10/10/1991", "NonSmoker", "10/10/1968", "NonSmoker", "99,000", "5", "£76.98", "£1,062.32"},
-            {"Joint", "10/03/1992", "NonSmoker", "10/10/1968", "NonSmoker", "67,777", "9", "£60.20", "£1,495.37"},
-            {"Joint", "10/05/1969", "Smoker", "10/05/1969", "NonSmoker", "100,000", "10", "£173.60", "£4,791.36"}, //Smoker Infrequent client 1 only
-            {"Joint", "11/10/1991", "Smoker", "11/10/1991", "Smoker", "99,999", "5", "£28.90", "£398.82"}, //Smoker Infrequent client 1 and 2
-            {"Joint", "20/10/1985", "Smoker", "20/10/1985", "Smoker", "1,000", "10", "£0.46", "£12.70"} //Smoker Infrequent client 2 only
+            {"Joint","19/10/1968","NonSmoker","19/10/1968","NonSmoker","10000","10","£15.54","100","JLSA1"},
+            {"Joint","19/10/1999","Smoker","19/10/1999","NonSmoker","45678","15","£11.14","80","JLSA2"},
+            {"Joint","19/10/1999","Smoker","19/10/1968","Smoker","33000","10","£35.01","50","JLSA3"},
+            {"Joint","29/10/1985","Smoker","29/10/1985","Smoker","1000","10","£0.46","100","JLSA8"},
+            {"Joint","19/10/1991","NonSmoker","19/10/1968","NonSmoker","99000","5","£76.98","100","JLSA4"},
+            {"Joint","19/03/1992","NonSmoker","19/10/1968","NonSmoker","67777","9","£60.20","100","JLSA5"},
+            {"Joint","19/05/1969","Smoker","19/05/1969","NonSmoker","100000","10","£173.60","100","JLSA6"},
+            {"Joint","20/10/1991","Smoker","20/10/1991","Smoker","99999","5","£28.90","100","JLSA7"}
     };
 
     public static String[][] SingleLifeQuoteByPremium = new String[][]{
