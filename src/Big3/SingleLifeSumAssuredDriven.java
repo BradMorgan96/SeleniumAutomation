@@ -193,9 +193,10 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 //Extract all the required values from the array
                 String DateOfBirth = SumAssuredCases[i][1];
                 String SmokerStatus = SumAssuredCases[i][2];
-                String SumAssured = SumAssuredCases[i][5].replace(",","");
-                String PolicyTerm = SumAssuredCases[i][6];
-                String ExpectedPremium = SumAssuredCases[i][7];
+                String SumAssured = SumAssuredCases[i][3];
+                String PolicyTerm = SumAssuredCases[i][4];
+                String ExpectedPremium = SumAssuredCases[i][5];
+                String CommissionRet = SumAssuredCases[i][6];
 
                 //Get the fields.
                 WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
@@ -311,6 +312,11 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
                 com.log(logFile,"Sum assured set to £" + SumAssured);
 
+                //Now we need to enter the commission retention value
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).clear();
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).sendKeys(CommissionRet);
+                com.log(logFile, "Commission retention is " + CommissionRet + "%");
+
                 try{
                     WebDriverWait wait = new WebDriverWait(driver, 5);
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"btn_get_quote\"]")));
@@ -348,7 +354,7 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
 
                     //Read the first row of the quote responses table and ensure it matches the expected premium amount
                     String ActualPremium = driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[6]")).getAttribute("innerText");
-                    com.log(logFile, "ActualPremium: " + ActualPremium);
+                    com.log(logFile, "ActualPremium: £" + ActualPremium);
                     com.log(logFile, "ExpectPremium: " + ExpectedPremium);
 
                     if (!ExpectedPremium.matches("£" + ActualPremium)) {
