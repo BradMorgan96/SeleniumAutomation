@@ -155,6 +155,15 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 driver.findElement(By.xpath("//*[@id=\"term\"]")).sendKeys("25");
                 com.log(logFile, "Policy term set to 25 years");
 
+                try{
+                    WebDriverWait wait = new WebDriverWait(driver, 5);
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"updateclient\"]")));
+                    com.log(logFile, "[ Update Client ] button now clickable.");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    com.log(logFile, e.getMessage());
+                }
+
                 //Save the changes
                 driver.findElement(By.xpath("//*[@id=\"updateclient\"]")).click();
 
