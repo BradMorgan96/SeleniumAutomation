@@ -4,7 +4,9 @@ import TestBase.ClassGlobals;
 import TestBase.CommonMethods;
 import TestBase.WebDriverSetup;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -267,6 +269,14 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                     throw new Exception("Elements displayed when they should not have been.");
                 }
 
+                try{
+                    WebDriverWait wait = new WebDriverWait( driver, 5);
+                    wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy( By.xpath( "//*[@id=\"client_1_answers\"]/p[1]/span[1]/label/input" ) ) );
+                } catch (Exception e){
+                    e.printStackTrace();
+                    com.log(logFile, e.getMessage());
+                }
+
                 //Set the eligibility options
                 driver.findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[1]/span[1]/label/input")).click();
                 driver.findElement(By.xpath("//*[@id=\"client_1_answers\"]/p[2]/span[1]/label/input")).click();
@@ -300,6 +310,15 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                 driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).clear();
                 driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys(SumAssured);
                 com.log(logFile,"Sum assured set to £" + SumAssured);
+
+                try{
+                    WebDriverWait wait = new WebDriverWait(driver, 5);
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"btn_get_quote\"]")));
+                    com.log(logFile, "[ Get Quotes ] button now clickable.");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    com.log(logFile, e.getMessage());
+                }
 
                 //Select the get quote button
                 driver.findElement(By.xpath("//*[@id=\"btn_get_quote\"]")).click();
@@ -339,16 +358,26 @@ public class SingleLifeSumAssuredDriven extends TestBase.ClassGlobals{
                     }
 
                     //Get the Big3 Reference number
-                    methods.GetAndLogReferenceNumber(driver, logFile);
+                    methods.GetAndLogReferenceNumber(driver, logFile, SumAssuredCases[i] );
+
+                    //Start the workflow
+                    methods.ClickGoToApplication(driver, logFile);
 
                 }
 
-                for( int t = tabs.size() - 1 ; t>0; t--) {
-                    driver.switchTo().window(tabs.get(t));
-                    driver.close();
+                //Get the handle of the original tab
+                String originalHandle = driver.switchTo().window(tabs.get(0)).getWindowHandle();
+
+                //Open all other tabs and close them
+                for(String handle : driver.getWindowHandles()) {
+                    if (!handle.equals(originalHandle)) {
+                        driver.switchTo().window(handle);
+                        driver.close();
+                    }
                 }
 
-                driver.switchTo().window(tabs.get(0));
+                //Switch to tab 0
+                driver.switchTo().window(originalHandle);
 
                 Thread.sleep(2500);
             }

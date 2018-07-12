@@ -2,13 +2,17 @@ package Big3;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import sun.security.krb5.Credentials;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class Methods extends TestBase.ClassGlobals{
@@ -64,10 +68,17 @@ public class Methods extends TestBase.ClassGlobals{
         }
 
         String LeadId = driver.getCurrentUrl();
-        LeadId = LeadId.substring((testEnvironment.length() + "/leads/view/".length()));
 
-        com.log(logFile, LeadId + " has been successfully added to CRM");
+        //Attempt and get the lead ID, handle StringIndexOutOfBoundsException
+        //as sometimes it fails and we need to start over. Not a bug, test server
+        //just cant keep up with multiple selenium nodes.
+        try {
+            LeadId = LeadId.substring((testEnvironment.length() + "/leads/view/".length()));
 
+            com.log(logFile, LeadId + " has been successfully added to CRM");
+        } catch (StringIndexOutOfBoundsException StringIndexException){
+            LeadId = Integer.toString(AddNewFakeLead(driver, logFile));
+        }
 
         return Integer.parseInt(LeadId);
     }
@@ -186,27 +197,29 @@ public class Methods extends TestBase.ClassGlobals{
         }
     }
 
-    public void GetAndLogReferenceNumber(WebDriver driver, File logFile){
+    public void GetAndLogReferenceNumber(WebDriver driver, File logFile, String[] custDetails){
         try {
-            //Now we need to select the [Start Application] button for that quote
-            driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button")).click();
-
-            //Wait for a reference number to be returned
-            Thread.sleep(4000);
-
             //This is where we will store the ref number
             String referenceNumber = null;
 
             //There's an alert that gets displayed
             try {
+                //Now we need to select the [Start Application] button for that quote
+                driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button")).click();
+
+                WebDriverWait wait = new WebDriverWait( driver, 5);
+                wait.until(ExpectedConditions.alertIsPresent());
+
                 //Get the alert
-                Alert alert = driver().switchTo().alert();
+                Alert alert = driver.switchTo().alert();
 
                 //Get the text from the alert
                 referenceNumber = alert.getText();
 
                 //Close the alert.
                 alert.dismiss();
+            } catch (NoAlertPresentException e) {
+                throw new NoAlertPresentException();
             } catch (Exception e) {
                 com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
             }
@@ -222,10 +235,41 @@ public class Methods extends TestBase.ClassGlobals{
             compiledMessage += "+------------------------------------------+\r\n";
             compiledMessage += "| These are the customer details used:     |\r\n";
             compiledMessage += "|                                          |\r\n";
+            compiledMessage += Arrays.toString( custDetails ) + "\r\n";
+            compiledMessage += "+------------------------------------------|\r\n";
 
             com.log(logFile, compiledMessage);
+        } catch (Exception e){
+            e.printStackTrace();
+            com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
+        }
+    }
 
-            com.log(logFile, driver.findElement(By.xpath("//*[@id=\"body-column\"]/div[3]/div[2]")).getAttribute("innerText") + "\r\n\r\n+------------------------------------------+\n");
+    public void ClickGoToApplication(WebDriver driver, File logFile){
+        try{
+            ArrayList<String> openTabsStart = new ArrayList<String>( driver.getWindowHandles() );
+
+            //Wait
+            Thread.sleep(2500);
+
+            //Click [ Go To Application ]
+            driver.findElement(By.xpath("//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button")).click();
+
+            //Wait
+            Thread.sleep(2500);
+
+            for(String handle : driver.getWindowHandles()) {
+                if ( !openTabsStart.contains(handle) ) {
+                    driver.switchTo().window(handle);
+                    driver.close();
+                    com.log(logFile, "Closed Big3 Workflow tab");
+                }
+            }
+
+            com.log(logFile, "Emailed the workflow ID");
+
+            //Wait
+            Thread.sleep(1000);
         } catch (Exception e){
             e.printStackTrace();
             com.log(logFile, "WARNING! TEST FAILED BECAUSE OF EXCEPTION! -> " + e.getClass().getSimpleName() + "\r\n" + e.getMessage());
