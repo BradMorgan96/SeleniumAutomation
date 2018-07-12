@@ -206,9 +206,10 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
             //for(int i=0; i<1; i++){
 
                 //Extract general policy details from the array
-                String QuotePremium = SumAssuredCases[i][7].replace("£","");
+                String QuotePremium = SumAssuredCases[i][5].replace("£","");
                 String PolicyTerm = SumAssuredCases[i][6];
-                String ExpectedSumAssured = SumAssuredCases[i][5].replace("£","").replace(",","");
+                String ExpectedSumAssured = SumAssuredCases[i][7].replace("£","").replace(",","");
+                String CommissionRet = SumAssuredCases[i][8];
 
                 //Get the fields.
                 WebElement EligibilityTitleOne = driver.findElement(By.xpath("//*[@id=\"title_1\"]"));
@@ -374,6 +375,14 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 driver.switchTo().window(tabs.get(2));
                 com.log(logFile, "Switched to Big3 Quoting Tab");
 
+                try{
+                    WebDriverWait wait = new WebDriverWait( driver, 5);
+                    wait.until( ExpectedConditions.visibilityOfAllElementsLocatedBy( By.xpath( "//*[@id=\"quote_result_table\"]/tbody/tr[1]/td[9]/button" ) ) );
+                } catch (Exception e){
+                    e.printStackTrace();
+                    com.log(logFile, e.getMessage());
+                }
+
                 //Select the single life radial button.
                 driver.findElement(By.xpath("//*[@id=\"quote_details_joint_wrapper\"]/p[2]/span/input")).click();
                 com.log(logFile, "Selected joint life radial");
@@ -391,6 +400,11 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 driver.findElement(By.xpath("//*[@id=\"premium\"]")).clear();
                 driver.findElement(By.xpath("//*[@id=\"premium\"]")).sendKeys(QuotePremium);
                 com.log(logFile, "Quote Premium set to £" + QuotePremium);
+
+                //Now we need to enter the commission retention value
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).clear();
+                driver.findElement(By.xpath("//*[@id=\"commission_retained\"]")).sendKeys(CommissionRet);
+                com.log(logFile, "Commission retention is " + CommissionRet + "%");
 
                 try{
                     WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -413,7 +427,7 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 com.log(logFile, "Actual sum assured: " + ActualSumAssured);
                 com.log(logFile, "Expected sum assured: " + ExpectedSumAssured);
 
-                if(!ExpectedSumAssured.matches("£" + ActualSumAssured)){
+                if(!ExpectedSumAssured.matches(ActualSumAssured)){
                     com.log(logFile, "FAILED! ------- The actual sum assured did not match the expected sum assured");
                 } else {
                     com.log(logFile, "PASSED! ------- The actual sum assured matched the expected sum assured");

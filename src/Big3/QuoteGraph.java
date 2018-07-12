@@ -34,14 +34,14 @@ public class QuoteGraph{
     };
 
     public static String[][] SingleLifeQuoteByPremium = new String[][]{
-            {"Single", "31/10/1999", "NonSmoker", "£9.57", "1", "£72,277.00", "100"},
-            {"Single", "17/11/1981", "NonSmoker", "£10.10", "10", "£35,488", "100"}
+            {"Single", "31/10/1999", "NonSmoker", "£9.57", "1", "£72,277.00", "100", "SLP1"},
+            {"Single", "17/11/1981", "NonSmoker", "£10.10", "10", "£35,488", "100", "SLP2"}
     };
 
     public static String[][] JointLifeQuoteByPremium = new String[][]{
-            {"Joint", "10/08/1977", "NonSmoker", "10/10/1999", "Smoker", "9,265", "6", "£4.00", "£66.24"}, //Smoker Infrequent client 2
-            {"Joint", "10/12/1971", "NonSmoker", "10/08/1977", "Smoker", "88,457", "7", "£77.00", "£1,487.64"},
-            {"Joint", "10/10/1977", "Smoker", "10/10/1977", "Smoker", "11,914", "11", "£9.98", "£275.45"}
+            {"Joint", "10/08/1977", "NonSmoker", "19/10/1999", "Smoker", "£4.00", "6", "£9275", "100", "JLP1"},
+            {"Joint", "19/12/1971", "NonSmoker", "19/08/1977", "Smoker", "£77.00", "7", "£88461", "100", "JLP1"},
+            {"Joint", "19/10/1977", "Smoker", "19/10/1977", "Smoker", "£9.98", "11", "£11921", "100", "JLP1"}
     };
 
 }
