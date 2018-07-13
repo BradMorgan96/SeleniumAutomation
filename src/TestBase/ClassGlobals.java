@@ -15,6 +15,8 @@ public class ClassGlobals extends WebDriverSetup{
     //This is where the selenium hub is located.
     public static String hubUrl = "http://10.168.206.234:4445/wd/hub";      //Harvey
     //public static String hubUrl = "http://10.168.206.15:4445/wd/hub";     //Chris
+    //public static String hubUrl = "http://10.168.206.16:4445/wd/hub";     //Azizah
+    //public static String hubUrl = "http://10.168.206.5:4445/wd/hub";      //Brad
 
     //This is the db settings
     public static String DBName = "cakephpINT";
