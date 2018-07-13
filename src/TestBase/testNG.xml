@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Default Suite" thread-count="4" parallel="tests">
+<suite name="Default Suite" thread-count="4" parallel="classes">
+    <test name="Big3Suite">
+        <classes>
+            <class name="Big3.JointLifePremiumDriven" />
+            <class name="Big3.JointLifeSumAssuredDriven" />
+            <class name="Big3.SingleLifePremiumDriven" />
+            <class name="Big3.SingleLifeSumAssuredDriven" />
+        </classes>
+    </test>
+    <!--
+    <test name="TestPrepCases">
+        <classes>
+            <class name="TestPrep.CreateAllLeadsAllProviders" />
+            <class name="TestPrep.CreatePNLeadsAllProviders" />
+            <class name="TestPrep.CreateNoPNLeadsAllProviders" />
+        </classes>
+    </test>
+    <test name="SunLifeAutomation">
+        <classes>
+            <class name="AutomationTest.SunlifeBlankPremium" />
+            <class name="AutomationTest.SunlifePremiumAsZero" />
+            <class name="AutomationTest.SunlifePremiumBelowFive" />
+            <class name="AutomationTest.SunlifePremiumBelowMinimum" />
+            <class name="AutomationTest.JointPanelQuotesBelowMinimum" />
+            <class name="AutomationTest.JointRAPanelQuotesBelowMinimum" />
+            <class name="AutomationTest.SinglePanelQuotesBelowMinimum" />
+            <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum" />
+        </classes>
+    </test>
     <test name="AutomationSetOne">
         <classes>
-            <!-- Lead Creation Tests -->
-                <class name="TestPrep.CreateAllLeadsAllProviders" />
-                <class name="TestPrep.CreatePNLeadsAllProviders" />
-                <class name="TestPrep.CreateNoPNLeadsAllProviders" />
-            <!-- Big 3 Tests -->
-<!--                <class name="Big3.EligibilityBasedOnAge" />
-                <class name="Big3.UpdateFieldsTests" />             -->
-                <class name="Big3.JointLifePremiumDriven" />
-                <class name="Big3.JointLifeSumAssuredDriven" />
-                <class name="Big3.SingleLifePremiumDriven" />
-                <class name="Big3.SingleLifeSumAssuredDriven" />
-            <!-- SunLife tests -->
-                <class name="AutomationTest.SunlifeBlankPremium" />
-                <class name="AutomationTest.SunlifePremiumAsZero" />
-                <class name="AutomationTest.SunlifePremiumBelowFive" />
-                <class name="AutomationTest.SunlifePremiumBelowMinimum" />
-            <!-- Quoting tests for RA Panel -->
-                <class name="AutomationTest.JointPanelQuotesBelowMinimum" />
-                <class name="AutomationTest.JointRAPanelQuotesBelowMinimum" />
-                <class name="AutomationTest.SinglePanelQuotesBelowMinimum" />
-                <class name="AutomationTest.SingleRAPanelQuotesBelowMinimum" />
-            <!-- Sprint Tasks -->
                 <class name="DEV1765_NoContactAfterField.TC1_NoContactAfterSunLifeGOF" />
                 <class name="DEV1765_NoContactAfterField.TC2_NoContactAfterRAPanel" />
                 <class name="DEV1765_NoContactAfterField.TC3_FuneralPlans" />
         </classes>
     </test>
+   -->
 </suite>
