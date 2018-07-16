@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" thread-count="4" parallel="classes">
-    <!--
     <test name="Big3Suite">
         <classes>
             <class name="Big3.JointLifePremiumDriven" />
             <class name="Big3.JointLifeSumAssuredDriven" />
             <class name="Big3.SingleLifePremiumDriven" />
             <class name="Big3.SingleLifeSumAssuredDriven" />
-        </classes>
-    </test>
-    -->
-    <test name="RegressionTests">
-        <classes>
-<!--           <class name="RegressionTests.LoginUsernameNoPassword" /> -->
-            <class name="RegressionTests.GDPRRegression.SalesUsersGDPR_DEV_T1453" />
         </classes>
     </test>
     <!--
