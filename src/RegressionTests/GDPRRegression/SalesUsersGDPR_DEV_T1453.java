@@ -46,11 +46,12 @@ public class SalesUsersGDPR_DEV_T1453 extends TestBase.ClassGlobals{
 
         //Set the start and end time
         startTime = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+        String nowTime = new SimpleDateFormat("HH:mm:ss").format(new Date());
         endTime   = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 
         //Log that a new test has started.
         com.log(logFile, "-----TEST STARTED-----");
-        com.log(logFile, "Start Time: " + startTime);
+        com.log(logFile, "Start Time: " + startTime + " " + nowTime);
         com.log(logFile, "Test: DEV-T1453 Sales Users can utilize the GDPR functionality.");
         com.log(logFile, "----------------------");
 
