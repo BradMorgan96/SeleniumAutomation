@@ -2,6 +2,7 @@ package CreateLeadsEveryProvider;
 
 /**
  * Created by hfletcher on 21/06/2018.
+ * Update by bmorgan on 31/07/2018.
  */
 public class LeadProviders {
 
@@ -180,5 +181,12 @@ public class LeadProviders {
             "Apply Online INCOMPLETE Sat",
             "Apply Online INCOMPLETE",
             "Apply Online"
+    };
+
+
+    public static String[] theMainThree = new String[]{
+            "Sunlife GOF",
+            "Cavendish",
+            "michael_anthony"
     };
 }

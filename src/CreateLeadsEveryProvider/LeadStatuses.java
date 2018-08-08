@@ -6,14 +6,14 @@ package CreateLeadsEveryProvider;
 public class LeadStatuses {
 
     public static String[] leadStatuses = new String[]{
-        "1",    //New
+       // "1",    //New
         "2",    //Rejected
         "3",    //Fake
         "4",    //Duplicate
         "5",    //Turned Down
         "6",    //Not Contacted
         "7",    //Quoted
-        "8",    //Cannot Quote
+        "8",    //Cannot Quote */
         "9",    //Contacted
         "10",   //Sold
         "11",   //Chicken Wings
@@ -22,7 +22,7 @@ public class LeadStatuses {
         "14",   //Declined
         "15",   //Sold Incomplete
         "16",   //Hotkey
-        "17",   //back to Cavendish
+        "17"   //back to Cavendish
     };
 
     public static String[] leadStatusWords = new String[]{
