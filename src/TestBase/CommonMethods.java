@@ -1,6 +1,6 @@
 package TestBase;
 
-import CreateLeadsEveryProvider.LeadProviders;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -152,6 +152,62 @@ public class CommonMethods extends ClassGlobals{
         }
     }
 
+    public void PopulateClientDetails(WebDriver driver, File logFile, int lead_id, int ClientNumber, String title, String firstname, String surname, int AgeNextBirthday, String smokerStatus, String gender){
+        //Open the requested lead in the leads view.
+        driver.get(testEnvironment + "/leads/view/" + lead_id);
+
+        //If the leadCalls error is displayed
+        try{
+            //Wait for the page to load
+            Thread.sleep(7500);
+
+            //Close the alert
+            Alert alert = driver.switchTo().alert();
+            alert.dismiss();
+        } catch (Exception e){
+            com.log(logFile, "Handled leadCalls alert.");
+        }
+
+        /* Define dropdowns and web elements */
+        Select drpSmoker = new Select(driver.findElement(By.xpath("//*[@id=\"smoker_"+ ClientNumber +"\"]")));
+        drpSmoker.selectByVisibleText(smokerStatus);
+        com.log(logFile, "Client " + ClientNumber + " smoker status set to " + smokerStatus);
+
+        //Set the sex field
+        Select drpSex = new Select(driver.findElement(By.xpath("//*[@id=\"gender_"+ ClientNumber +"\"]")));
+        drpSex.selectByVisibleText(gender);
+        com.log(logFile, "Client " + ClientNumber + " sex set to " + gender);
+
+        //Set the title for each client
+        driver.findElement(By.xpath("//*[@id=\"title_"+ ClientNumber +"\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"title_"+ ClientNumber +"\"]")).sendKeys(title);
+        com.log(logFile, "Client " + ClientNumber + " title cleared and set to " + title);
+
+        //Set up the client first name
+        driver.findElement(By.xpath("//*[@id=\"forename_"+ ClientNumber +"\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"forename_"+ ClientNumber +"\"]")).sendKeys(firstname);
+        com.log(logFile, "Client " + ClientNumber + " first name cleared and set to " + firstname);
+
+        //Set up the client surname
+        driver.findElement(By.xpath("//*[@id=\"surname_"+ ClientNumber + "\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"surname_"+ ClientNumber + "\"]")).sendKeys(surname);
+        com.log(logFile, "Client " + ClientNumber + " last name cleared and set to " + surname);
+
+        //Set the date of birth
+        driver.findElement(By.xpath("//*[@id=\"dob_"+ ClientNumber +"\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"dob_"+ ClientNumber +"\"]")).sendKeys(com.DOBFromAge(AgeNextBirthday - 1));
+        com.log(logFile, "Client " + ClientNumber + " DOB cleared and set to " + com.DOBFromAge(AgeNextBirthday - 1));
+
+        //Select the update button
+        driver.findElement(By.xpath("//*[@id=\"panel-column-2\"]/div[8]/input")).click();
+
+        try{
+            Thread.sleep(750);
+        }  catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void logToDB(String message, String className){
         try {
             //Connect to the database
@@ -169,11 +225,10 @@ public class CommonMethods extends ClassGlobals{
             e.printStackTrace();
         }
     }
-
     public int AddNewFakeLeadMainThree(WebDriver driver, File logFile, int leadProviderRemaining){
 
         //Identify the array that holds the list of the 3 providers
-        String[] leadProviders = LeadProviders.theMainThree;
+        String[] leadProviders = CreateLeadsEveryProvider.LeadProviders.theMainThree;
 
         //Open the add lead page
         driver.get(testEnvironment + "/leads/add");
@@ -242,5 +297,4 @@ public class CommonMethods extends ClassGlobals{
 
         return Integer.parseInt(LeadId);
     }
-
 }
