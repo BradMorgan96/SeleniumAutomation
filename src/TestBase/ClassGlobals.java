@@ -12,8 +12,8 @@ public class ClassGlobals extends WebDriverSetup{
     //public static String testEnvironment = "http://yellow.reassuredpensions.co.uk";
     //public static String testEnvironment = "http://owp-test.reassuredpensions.co.uk";
     //public static String testEnvironment = "http://crm.dev-1729.test.local";
-    //public static String testEnvironment = "http://crm.dev-1863.test.local";
-    public static String testEnvironment = "http://crm.release-8-46.stg.local";
+    public static String testEnvironment = "http://crm.dev-1863.test.local";
+    //public static String testEnvironment = "http://crm.release-8-46.stg.local";
 
     //This is where the selenium hub is located.
     //public static String hubUrl = "http://10.168.206.234:4445/wd/hub";      //Harvey
@@ -23,7 +23,7 @@ public class ClassGlobals extends WebDriverSetup{
 
     //This is the db settings
     //public static String DBName = "cakephpINT"; //Test and Staging
-    public static String DBName = "release-8-46_cake"; //DEV-Test
+    public static String DBName = "develop_cake"; //DEV-Test
     public static String DBUser = "itqa-select-update";
     public static String DBPass = "rg.#Fi,hjP~D;!XvAWIUwF";
     //public static String DBHost = "192.168.201.231";  //Test

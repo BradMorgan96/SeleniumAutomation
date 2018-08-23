@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Default Suite" thread-count="4" parallel="classes">
-    <test name="ExeterRegression">
+    <test name="SunLifeMGMRemoval">
+        <classes>
+            <class name="SunLife.DEV1996_ExisCustomerMGMReferralPolicy"/>
+       <!--     <class name="SunLife.DEV1996_NewCustomerInvalidMGMReferral"/>
+       <class name="SunLife.DEV1996_ExisCustomerInvalidMGMReferral"/>
+            <class name="SunLife.DEV1996_NewCustomerMGMReferralPolicy"/> -->
+        </classes>
+    </test>
+ <!--   <test name="ExeterRegression">
         <classes>
             <class name="ExeterAutomation.DEV1864_ExeterLogin" />
             <class name="ExeterAutomation.DEV1865_ExeterQuotingInvalidPremium"/>
@@ -42,5 +50,5 @@
             <class name="DEV1765_NoContactAfterField.TC2_NoContactAfterRAPanel" />
             <class name="DEV1765_NoContactAfterField.TC3_FuneralPlans" />
     </classes>
-</test>
+</test> -->
 </suite>

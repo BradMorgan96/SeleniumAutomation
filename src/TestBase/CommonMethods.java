@@ -1,5 +1,6 @@
 package TestBase;
 
+import CreateLeadsEveryProvider.LeadProviders;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -229,6 +230,78 @@ public class CommonMethods extends ClassGlobals{
 
         //Identify the array that holds the list of the 3 providers
         String[] leadProviders = CreateLeadsEveryProvider.LeadProviders.theMainThree;
+
+        //Open the add lead page
+        driver.get(testEnvironment + "/leads/add");
+
+        //Fill out the form
+        driver.findElement(By.xpath("//*[@id=\"title_1\"]")).sendKeys("Mr");
+        driver.findElement(By.xpath("//*[@id=\"forename_1\"]")).sendKeys("Tester");
+        driver.findElement(By.xpath("//*[@id=\"surname_1\"]")).sendKeys("Testeez");
+        driver.findElement(By.xpath("//*[@id=\"dob_1\"]")).sendKeys(com.DOBFromAge(25));
+        driver.findElement(By.xpath("//*[@id=\"sum_assured\"]")).sendKeys("10000");
+
+        driver.findElement(By.xpath("//*[@id=\"title_2\"]")).sendKeys("Mrs");
+        driver.findElement(By.xpath("//*[@id=\"forename_2\"]")).sendKeys("Testet");
+        driver.findElement(By.xpath("//*[@id=\"surname_2\"]")).sendKeys("Testeez");
+        driver.findElement(By.xpath("//*[@id=\"dob_2\"]")).sendKeys(com.DOBFromAge(25));
+
+        Select SexSelect1 = new Select( driver.findElement(By.xpath("//*[@id=\"gender_1\"]")) );
+        Select SexSelect2 = new Select( driver.findElement(By.xpath("//*[@id=\"gender_2\"]")) );
+        Select SmokerSelect1 = new Select( driver.findElement(By.xpath("//*[@id=\"smoker_1\"]")) );
+        Select SmokerSelect2= new Select( driver.findElement(By.xpath("//*[@id=\"smoker_2\"]")) );
+
+        SexSelect1.selectByVisibleText("Male");
+        SexSelect2.selectByVisibleText("Female");
+        SmokerSelect1.selectByVisibleText("No");
+        SmokerSelect2.selectByVisibleText("No");
+
+        Select provider = new Select(driver.findElement(By.xpath("//*[@id=\"lead_provider_id\"]")));
+        provider.selectByVisibleText(leadProviders[leadProviderRemaining]);
+
+        Select LifeSelect = new Select( driver.findElement(By.xpath("//*[@id=\"life\"]")) );
+        Select CICSelect = new Select( driver.findElement(By.xpath("//*[@id=\"cic\"]")) );
+
+        LifeSelect.selectByVisibleText("Yes");
+        CICSelect.selectByVisibleText("No");
+
+        Select LevelSelect = new Select( driver.findElement(By.xpath("//*[@id=\"level_term\"]")) );
+        Select GuaranteedSelect = new Select( driver.findElement(By.xpath("//*[@id=\"guaranteed\"]")) );
+
+        LevelSelect.selectByVisibleText("Yes");
+        GuaranteedSelect.selectByVisibleText("Yes");
+
+        driver.findElement(By.xpath("//*[@id=\"postcode\"]")).sendKeys("RG214HG");
+
+        driver.findElement(By.xpath("//*[@id=\"term\"]")).sendKeys("25");
+
+        driver.findElement(By.xpath("//*[@id=\"add_new_lead\"]")).click();
+
+        try{
+            Thread.sleep(5000);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        String LeadId = driver.getCurrentUrl();
+
+        //Attempt and get the lead ID, handle StringIndexOutOfBoundsException
+        //as sometimes it fails and we need to start over. Not a bug, test server
+        //just cant keep up with multiple selenium nodes.
+        try {
+            LeadId = LeadId.substring((testEnvironment.length() + "/leads/view/".length()));
+
+            com.log(logFile, LeadId + " has been successfully added to CRM");
+        } catch (StringIndexOutOfBoundsException StringIndexException){
+            LeadId = Integer.toString(AddNewFakeLeadMainThree(driver, logFile, leadProviderRemaining));
+        }
+
+        return Integer.parseInt(LeadId);
+    }
+    public int AddNewFakeLeadSunlife(WebDriver driver, File logFile, int leadProviderRemaining){
+
+        //Identify the array that holds the list of the 3 providers
+        String[] leadProviders = LeadProviders.sunlifeLeads;
 
         //Open the add lead page
         driver.get(testEnvironment + "/leads/add");
