@@ -175,7 +175,7 @@ public class SalesUsersGDPR_DEV_T1453 extends TestBase.ClassGlobals{
                  */
 
                 //First though, we will need to add customer 2 details, but only if they aren't already there.
-                boolean isCustomer2 = driver.findElements(By.xpath("//*[@id=\"container-customer-details-2\"]/table/tbody/tr[1]/td[1]/button[1]")).size() > 0;
+                Boolean isCustomer2 = driver.findElement(By.xpath("//*[@id=\"container-customer-details-2\"]/table/tbody/tr[1]/td[1]/button[1]")).isDisplayed();
 
                 if (!isCustomer2) {
 
@@ -187,6 +187,13 @@ public class SalesUsersGDPR_DEV_T1453 extends TestBase.ClassGlobals{
                 }
 
                 for (int i = 1; i < 5; i++) {
+
+                    //Select Update Client
+                    driver.findElement(By.xpath("//*[@id=\"panel-column-2\"]/div[8]/input")).click();
+
+                    //Refresh the Page
+                    driver.navigate().refresh();
+
                     //Store the button as an element
                     WebElement button = driver.findElement(By.xpath("//*[@id=\"container-customer-details-2\"]/table/tbody/tr[1]/td[1]/button[" + i + "]"));
 

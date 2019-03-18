@@ -103,7 +103,7 @@ public class JointLifePremiumDriven extends TestBase.ClassGlobals {
                 Select drpDeath = new Select(driver.findElement(By.xpath("//*[@id=\"death\"]")));
                 Select drpFrequency = new Select(driver.findElement(By.xpath("//*[@id=\"payment_frequency\"]")));
 
-                drpLives.selectByIndex(0);
+                drpLives.selectByIndex(2);
                 drpQuote.selectByVisibleText("Sum");
                 drpCIC.selectByVisibleText("No");
                 drpLevelTerm.selectByVisibleText("Yes");

@@ -9,5 +9,5 @@ public class PackageGlobals {
     public static String Big3ApprovedSalesUser = "mwatts";
 
     //This is the big 3 approved provider
-    public static String Big3ApprovedProvider = "Zurich";
+    public static String Big3ApprovedProvider = "Legal & General";
 }
