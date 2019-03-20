@@ -9,9 +9,10 @@ public class ClassGlobals extends WebDriverSetup{
 
 
     //This is where the selenium hub is located.
-    public static String hubUrl = "";
+    public static String hubUrl = ""; //Brad
 
     //This is the db settings
+    public static String DBName = "";
     public static String DBUser = "";
     public static String DBPass = "";
     public static String DBHost = ""; //DEV-Test
