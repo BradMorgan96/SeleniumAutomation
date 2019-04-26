@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+import sun.security.krb5.internal.PAEncTSEnc;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -58,9 +59,12 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
             /* Identify the Array */
             String[][] LeadCases = NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses;
 
+            char postcodeLetterOne = 'a';
+            char postcodeLetterTwo = 'a';
+
             /** Here an a loop is started, which creates a lead for every lead provider which should NOT receive a Privacy Notice */
 
-            for (int i = 0; i < NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses.length; i++) {
+            for (int i = 0; i < NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses.length + 40; i++) {
 
                 /* Select Add Lead */
                 driver.findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -88,8 +92,8 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
                 WebElement postcode = driver.findElement(By.xpath("//*[@id=\"postcode\"]"));
 
                 /* Extract all the required values from the array and enter required client details */
-                String Lead = LeadCases[i][0];
-                String Status = LeadCases[i][1];
+                String Lead = LeadCases[0][0];
+                String Status = LeadCases[0][1];
                 titleClientOne.sendKeys("Mr");
                 forenameClientOne.sendKeys("Tester");
                 surnameClientOne.sendKeys("One");
@@ -104,11 +108,11 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
                 dobClientTwo.sendKeys("13/05/1985");
 
                 leadSource.selectByVisibleText(Lead);
-                initialOwner.selectByVisibleText("Dawn Wilkins");
+                initialOwner.selectByVisibleText("Luke Watts");
                 sumAssured.sendKeys("10000");
                 lifeDrp.selectByIndex(2);
                 cicDrp.selectByIndex(1);
-                postcode.sendKeys("RG21 4HG");
+                postcode.sendKeys("RG21 4" + postcodeLetterOne + postcodeLetterTwo);
 
                 Thread.sleep(300);
 
@@ -122,25 +126,34 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
                 Thread.sleep(250);
                 driver.findElement(By.xpath("//*[@id=\"email_2\"]")).sendKeys("test2@reassured.co.uk"); //Client 2 Email
                 Thread.sleep(250);
-                driver.findElement(By.xpath("//*[@id=\"mobile_phone\"]")).sendKeys("07492884762"); //Client 1 Mobile
+                driver.findElement(By.xpath("//*[@id=\"mobile_phone\"]")).sendKeys("07088844544"); //Client 1 Mobile
                 Thread.sleep(250);
-                driver.findElement(By.xpath("//*[@id=\"mobile_phone_2\"]")).sendKeys("07492884762"); //Client 2 Mobile
+                driver.findElement(By.xpath("//*[@id=\"mobile_phone_2\"]")).sendKeys("07088844544"); //Client 2 Mobile
                 Thread.sleep(250);
 
                 /* Change the lead status */
-                Select leadStatus = new Select(driver.findElement(By.xpath("//*[@id=\"lead_status_id\"]")));
-                leadStatus.selectByVisibleText(Status);
+                //Select leadStatus = new Select(driver.findElement(By.xpath("//*[@id=\"lead_status_id\"]")));
+               // leadStatus.selectByVisibleText(Status);
 
                 /* Selects Update Lead */
-                driver.findElement(By.xpath("//*[@id=\"panel-column-2\"]/div[8]/input")).click();
+               // driver.findElement(By.xpath("//*[@id=\"panel-column-2\"]/div[8]/input")).click();
 
-                Thread.sleep(2500);
+                //Wait for the lead to load
+                Thread.sleep(1000);
 
                 /* Prints the lead id of the lead added + the provider + the status */
                 String LeadRef = driver.findElement(By.xpath("//*[@id=\"body-column\"]/div[4]/h2")).getAttribute("innerText").replace("Lead Reference: ", "").replace("     ","").replace("\"","").substring(1,8);
                 int leadId = Integer.parseInt(LeadRef);
                 String firstLetter = Status.substring(0,3);
                 com.log(logFile, Lead + " " + Status + " Lead ID = |" + "'" + leadId +"', " + firstLetter);
+
+                //Stop the creation of duplicates
+                if (postcodeLetterTwo == 'z') {
+                    postcodeLetterTwo = 'a';
+                    postcodeLetterOne++;
+                } else {
+                    postcodeLetterTwo++;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

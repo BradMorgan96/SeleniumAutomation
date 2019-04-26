@@ -199,7 +199,7 @@ public class SunlifePremiumAsZero extends TestBase.ClassGlobals {
 
         isError = driver().findElements(By.id("quote_by_premium-notEmpty")).size() > 0;
 
-        // Validates quote
+        //Validates quote
         if (isError == true) {
             System.out.println("PASS: Expected error is displayed " );
         } else {

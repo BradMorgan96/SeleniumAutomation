@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Command line suite]">
+  <test name="Command line test(failed)">
+    <classes>
+      <class name="QuoteRunner.QuoteRunnerLauncher">
+        <methods>
+          <include name="endLocalLog"/>
+          <include name="mainRunner"/>
+          <include name="startLocalLog"/>
+          <include name="mainLauncher"/>
+          <include name="testCaseOptions"/>
+        </methods>
+      </class> <!-- QuoteRunner.QuoteRunnerLauncher -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->

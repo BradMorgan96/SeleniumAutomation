@@ -189,4 +189,14 @@ public class LeadProviders {
             "Cavendish",
             "michael_anthony"
     };
+
+    public static String[] sunlifeLeads = new String[]{
+           "Sunlife GOF",
+            "Sunlife GOF Capped",
+            "Sunlife GOF DNC",
+            "Sunlife GOF Capped DNC",
+            "Sunlife GOF (FLI) DNC",
+            "Sunlife GOF Customer Referral",
+            "Sunlife GOF Expired"
+    };
 }

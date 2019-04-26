@@ -4,7 +4,8 @@ public class NonPNLeadProvidersAndStatuses {
 
 
     public static String[][] NonPNLeadProvidersAndStatuses = new String[][] {
-
+            {"Sunlife GOF", "New"}
+            /*
             {"Cavendish", "Not Contacted"},
             {"Cavendish Dec", "Not Contacted"},
             {"Cavendish Dec - DNC", "Not Contacted"},
@@ -2412,6 +2413,6 @@ public class NonPNLeadProvidersAndStatuses {
             {"Visionary Markets Sat", "Hot Key"},
             {"Visionary Markets Sun", "Hot Key"},
             {"Visionary Markets Social", "Hot Key"}
+            */
     };
-
 }
