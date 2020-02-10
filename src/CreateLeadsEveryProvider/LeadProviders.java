@@ -103,20 +103,20 @@ public class LeadProviders {
 
     //These are the lead providers that SHOULD NOT receive a privacy notice
     public static String[] leadProvidersListTwo = new String[]{
-            "SYN",
+           // "SYN",
             //"Swinton Hotkeys", //This lead provider requires a reference, which the script doesn't have, so it's been left out.
-            "SunLife Mature",
-            "SunLife Inbound",
-            "SunLife Hotkeys",
-            "Sunlife GOF(FLI)",
-            "Sunlife GOF Expired",
-            "Sunlife GOF DNC",
-            "Sunlife GOF Customer Referral",
-            "Sunlife GOF Capped DNC",
-            "Sunlife GOF Capped",
-            "Sunlife GOF (FLI) DNC",
+           // "SunLife Mature",
+          //  "SunLife Inbound",
+          //  "SunLife Hotkeys",
+         //   "Sunlife GOF(FLI)",
+        //    "Sunlife GOF Expired",
+       //     "Sunlife GOF DNC",
+       //     "Sunlife GOF Customer Referral",
+         //   "Sunlife GOF Capped DNC",
+        //    "Sunlife GOF Capped",
+       //     "Sunlife GOF (FLI) DNC",
             "Sunlife GOF",
-            "SunLife Declined",
+       /*     "SunLife Declined",
             "SunLife Customer Referral",
             "SunLife - 45 day Expired",
             "SunLife",
@@ -180,7 +180,7 @@ public class LeadProviders {
             "Apply Online INCOMPLETE Sun",
             "Apply Online INCOMPLETE Sat",
             "Apply Online INCOMPLETE",
-            "Apply Online"
+            "Apply Online" */
     };
 
 
