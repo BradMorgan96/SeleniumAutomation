@@ -64,7 +64,7 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
 
             /** Here an a loop is started, which creates a lead for every lead provider which should NOT receive a Privacy Notice */
 
-            for (int i = 0; i < NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses.length + 40; i++) {
+            for (int i = 0; i < NonPNLeadProvidersAndStatuses.NonPNLeadProvidersAndStatuses.length + 20; i++) {
 
                 /* Select Add Lead */
                 driver.findElement(By.xpath("//*[@id=\"mainmenulist\"]/li[12]/a")).click();
@@ -108,7 +108,6 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
                 dobClientTwo.sendKeys("13/05/1985");
 
                 leadSource.selectByVisibleText(Lead);
-                initialOwner.selectByVisibleText("Luke Watts");
                 sumAssured.sendKeys("10000");
                 lifeDrp.selectByIndex(2);
                 cicDrp.selectByIndex(1);
@@ -142,10 +141,10 @@ public class CreateNoPNLeadsAllProviders extends TestBase.ClassGlobals {
                 Thread.sleep(1000);
 
                 /* Prints the lead id of the lead added + the provider + the status */
-                String LeadRef = driver.findElement(By.xpath("//*[@id=\"body-column\"]/div[4]/h2")).getAttribute("innerText").replace("Lead Reference: ", "").replace("     ","").replace("\"","").substring(1,8);
-                int leadId = Integer.parseInt(LeadRef);
-                String firstLetter = Status.substring(0,3);
-                com.log(logFile, Lead + " " + Status + " Lead ID = |" + "'" + leadId +"', " + firstLetter);
+             //   String LeadRef = driver.findElement(By.xpath("//*[@id=\"body-column\"]/div[4]/h2")).getAttribute("innerText").replace("Lead Reference: ", "").replace("     ","").replace("\"","").substring(1,8);
+              //  int leadId = Integer.parseInt(LeadRef);
+             //   String firstLetter = Status.substring(0,3);
+             //   com.log(logFile, Lead + " " + Status + " Lead ID = |" + "'" + leadId +"', " + firstLetter);
 
                 //Stop the creation of duplicates
                 if (postcodeLetterTwo == 'z') {

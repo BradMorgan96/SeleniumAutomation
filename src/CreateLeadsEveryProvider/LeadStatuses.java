@@ -26,13 +26,13 @@ public class LeadStatuses {
     };
 
     public static String[] leadStatusWords = new String[]{
-            "New",
+          /*  "New",
             "Rejected",
             "Fake",
             "Duplicate",
-            "Turned Down",
-            "Not Contacted",
-            "Quoted",
+            "Turned Down", */
+            "Not Contacted"
+           /* "Quoted",
             "Cannot Quote",
             "Contacted",
             "Sold",
@@ -42,6 +42,6 @@ public class LeadStatuses {
             "Declined",
             "Sold Incomplete",
             "Hot Key",
-            "Back to Cavendish"
+            "Back to Cavendish" */
     };
 }

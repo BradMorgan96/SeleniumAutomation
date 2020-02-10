@@ -76,7 +76,7 @@ public class EveryLeadProviderNoPrivacyNotice extends TestBase.ClassGlobals{
         //Most of this test is run in a loop because there are so many providers.
         //This loop adds all the providers that SHOULD receive a privacy notice
         //when the cake script gets run.
-        for(int i=0; i<LeadProviders.leadProvidersListTwo.length; i++){
+        for(int i=0; i< 40; i++){
             for(int s=0; s<LeadStatuses.leadStatuses.length; s++) {
                 //Get the name of the lead provider
                 String leadProviderName = LeadProviders.leadProvidersListTwo[i];
@@ -130,16 +130,16 @@ public class EveryLeadProviderNoPrivacyNotice extends TestBase.ClassGlobals{
 
                     //Now fill out all the form fields for customer 1.
                     title_1.sendKeys("Mr");
-                    forename_1.sendKeys("Chris" + suffixLetter);
-                    surname_1.sendKeys("Turner" + suffixLetter);
+                    forename_1.sendKeys("Test" + suffixLetter);
+                    surname_1.sendKeys("Tester" + suffixLetter);
                     dob_1.sendKeys(com.DOBFromAge(25));
                     gender_1.selectByVisibleText("Male");
                     smoker_1.selectByVisibleText("No");
 
                     //Now fill out all the form fields for customer 2.
-                    title_2.sendKeys("Mr");
-                    forename_2.sendKeys("Christina" + suffixLetter);
-                    surname_2.sendKeys("Turner" + suffixLetter);
+                    title_2.sendKeys("Miss");
+                    forename_2.sendKeys("Test" + suffixLetter);
+                    surname_2.sendKeys("Tester" + suffixLetter);
                     dob_2.sendKeys(com.DOBFromAge(25));
                     gender_2.selectByVisibleText("Female");
                     smoker_2.selectByVisibleText("No");
@@ -223,9 +223,9 @@ public class EveryLeadProviderNoPrivacyNotice extends TestBase.ClassGlobals{
                 } else if (Rand == 2){
                     driver.findElement(By.xpath("//*[@id=\"mobile_phone_2\"]")).sendKeys("07492884762");
                 } else if (Rand == 3){
-                    driver.findElement(By.xpath("//*[@id=\"email_2\"]")).sendKeys("ittesters@reassured.co.uk");
+                    driver.findElement(By.xpath("//*[@id=\"email_2\"]")).sendKeys("test1@reassured.co.uk");
                 } else if (Rand == 4){
-                    driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("harvey.fletcher@reassured.co.uk");
+                    driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("test2@reassured.co.uk");
                 }
 
                 //Log

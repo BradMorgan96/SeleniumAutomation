@@ -4,8 +4,7 @@ public class NonPNLeadProvidersAndStatuses {
 
 
     public static String[][] NonPNLeadProvidersAndStatuses = new String[][] {
-            {"Sunlife GOF", "New"}
-            /*
+           /* {"Sunlife GOF", "New"}
             {"Cavendish", "Not Contacted"},
             {"Cavendish Dec", "Not Contacted"},
             {"Cavendish Dec - DNC", "Not Contacted"},
@@ -71,7 +70,7 @@ public class NonPNLeadProvidersAndStatuses {
             {"Cavendish - Hotkey", "New"},
             {"Cavendish Customer Referral", "New"},
             {"Apply Online", "Unknown"},
-            {"Reassured Marketing", "New"},
+            {"Reassured Marketing", "New"}
             {"Reassured Marketing Sat", "New"},
             {"Reassured Marketing Sun", "New"},
             {"Reassured Marketing PMI", "New"},
@@ -79,9 +78,9 @@ public class NonPNLeadProvidersAndStatuses {
             {"Reassured Marketing PMI SUN", "New"},
             {"Reassured Marketing PPC", "New"},
             {"Sunlife GOF Capped", "New"},
-            {"Sunlife GOF Capped DNC", "New"},
-            {"Sunlife GOF", "New"},
-            {"Sunlife GOF DNC", "New"},
+            {"Sunlife GOF Capped DNC", "New"}, */
+            {"Sunlife GOF", "New"}
+            /* {"Sunlife GOF DNC", "New"},
             {"Sunlife GOF Customer Referral", "New"},
             {"Sunlife GOF(FLI)", "New"},
             {"Sunlife GOF (FLI) DNC", "New"},
